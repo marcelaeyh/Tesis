@@ -1,0 +1,6 @@
+imagename = 'moment0_13CO/'
+mode      = 'summary'
+hdkey     = ''
+hdvalue   = ''
+verbose   = False
+#imhead( imagename='moment0_13CO/',mode='summary',hdkey='',hdvalue='',verbose=False )
