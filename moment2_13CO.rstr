@@ -1,0 +1,243 @@
+<casaviewer-restore original-path="/home/marcela/Tesis Marcela/IRAS15445_recortados/moment2_13CO.rstr" version="0">
+ <dd-options>
+  <dd path="/home/marcela/Tesis Marcela/IRAS15445_recortados/moment2_13CO" dataType="image" displayType="contour">
+   <display_axes>
+    <xaxis popt="[Right Ascension, Declination, Frequency, Stokes]" ptype="choice" default="Right Ascension" listname="x-axis" datatype="String" value="Right Ascension" saved="Right Ascension"/>
+    <yaxis popt="[Right Ascension, Declination, Frequency, Stokes]" ptype="choice" default="Declination" listname="y-axis" datatype="String" value="Declination" saved="Declination"/>
+    <zaxis popt="[Right Ascension, Declination, Frequency, Stokes]" ptype="choice" default="Frequency" listname="z-axis" datatype="String" value="Frequency" saved="Frequency"/>
+   </display_axes>
+   <hidden_axes>
+    <haxis1 pmin="0" pmax="0" ptype="intrange" default="0" listname="Stokes" datatype="String" value="0" saved="0"/>
+   </hidden_axes>
+   <basic_settings>
+    <aspect popt="[fixed lattice, fixed world, flexible]" ptype="choice" default="fixed world" listname="aspect ratio" datatype="Bool" value="fixed world" saved="fixed world"/>
+    <pixeltreatment popt="[center, edge]" ptype="choice" default="center" listname="pixel treatment" datatype="Bool" value="edge" saved="edge"/>
+    <resample popt="[nearest, bilinear, bicubic]" ptype="choice" default="nearest" listname="resampling mode" datatype="Bool" value="bilinear" saved="bilinear"/>
+    <rellevels ptype="array" default="[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]" listname="Relative Contour Levels" datatype="String" value="[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]" saved="[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]"/>
+    <basecontour pmin="0" pmax="80.5" ptype="floatrange" default="0" listname="Base Contour Level" presolution="0.1" datatype="Bool" value="13.8" onrelease="0" saved="13.8"/>
+    <unitcontour pmin="0" pmax="80.5" ptype="floatrange" default="80.5" listname="Unit Contour Level" presolution="0.1" datatype="Bool" value="79.5" onrelease="0" saved="79.5"/>
+    <line pmin="0" pmax="5" ptype="floatrange" default="0.5" listname="Line width" presolution="0.1" datatype="Bool" value="0.5" saved="0.5"/>
+    <dashneg ptype="boolean" default="1" listname="Dash negative contours?" datatype="Bool" value="1" saved="1"/>
+    <dashpos ptype="boolean" default="0" listname="Dash positive contours?" datatype="Bool" value="1" saved="1"/>
+    <color popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="userchoice" default="foreground" listname="Line color" datatype="Bool" value="black" saved="black"/>
+   </basic_settings>
+   <position_tracking>
+    <absrel popt="[absolute, relative]" ptype="choice" default="absolute" listname="absolute or relative" datatype="Bool" value="absolute" saved="absolute"/>
+    <fracpix popt="[fractional, integral]" ptype="choice" default="integral" listname="fractional or integral pixel coordinates" datatype="Bool" value="integral" saved="integral"/>
+    <spectraltype popt="[optical velocity, radio velocity, wavelength, air wavelength, frequency]" ptype="choice" default="radio velocity" listname="spectral quantity" datatype="Bool" value="radio velocity" saved="radio velocity"/>
+    <spectralunit popt="[km/s, m/s, GHz, MHz, Hz, mm, um, nm, Angstrom]" ptype="userchoice" default="km/s" listname="spectral unit" datatype="Bool" value="km/s" saved="km/s"/>
+    <spectralnotation popt="[Flexible, Scientific, Fixed]" ptype="choice" default="Flexible" listname="numeric notation" datatype="Bool" value="Flexible" saved="Flexible"/>
+   </position_tracking>
+   <axis_labels>
+    <axislabelswitch ptype="boolean" default="1" listname="axis labelling &amp; annotation?" datatype="String" value="1" saved="1"/>
+    <titletext ptype="string" default="" listname="title" datatype="String" value="moment2_13CO" saved="moment2_13CO"/>
+    <xaxistext ptype="string" default="" listname="x axis label" datatype="String" value="" saved=""/>
+    <yaxistext ptype="string" default="" listname="y axis label" datatype="String" value="" saved=""/>
+    <xgridtype popt="[None, Tick marks, Full grid]" ptype="choice" default="Tick marks" listname="x grid type" datatype="String" value="Tick marks" saved="Tick marks"/>
+    <ygridtype popt="[None, Tick marks, Full grid]" ptype="choice" default="Tick marks" listname="y grid type" datatype="String" value="Tick marks" saved="Tick marks"/>
+    <ticklength pmin="0" pmax="20" ptype="floatrange" default="4" listname="tick mark length" presolution="0.1" datatype="String" value="4" saved="4"/>
+    <plotoutline ptype="boolean" default="1" listname="plot border?" datatype="String" value="1" saved="1"/>
+   </axis_labels>
+   <axis_label_properties>
+    <titletextcolor popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="userchoice" default="foreground" listname="title color" datatype="String" value="foreground" saved="foreground"/>
+    <xaxistextcolor popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="userchoice" default="foreground" listname="x axis label color" datatype="String" value="foreground" saved="foreground"/>
+    <yaxistextcolor popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="userchoice" default="foreground" listname="y axis label color" datatype="String" value="foreground" saved="foreground"/>
+    <xgridcolor popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="userchoice" default="foreground" listname="x grid/tick color" datatype="String" value="foreground" saved="foreground"/>
+    <ygridcolor popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="userchoice" default="foreground" listname="y grid/tick color" datatype="String" value="foreground" saved="foreground"/>
+    <plotoutlinecolor popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="userchoice" default="foreground" listname="plot border color" datatype="String" value="foreground" saved="foreground"/>
+    <labelposition popt="[Auto, bottom-left, bottom-right, top-left, top-right]" ptype="choice" default="Auto" listname="label position" datatype="String" value="Auto" saved="Auto"/>
+    <labelcharsize pmin="0.2" pmax="4" ptype="floatrange" default="1.2" listname="character size" presolution="0.05" datatype="String" value="1.2" saved="1.2"/>
+    <labelcharfont popt="[normal, roman, italic, script]" ptype="choice" default="normal" listname="character font" datatype="String" value="normal" saved="normal"/>
+    <labellinewidth pmin="0" pmax="5" ptype="floatrange" default="0.5" listname="line width" presolution="0.1" datatype="String" value="1.4" saved="1.4"/>
+    <axislabelpixelworld popt="[world, pixel]" ptype="choice" default="world" listname="world or pixel coordinates" datatype="Bool" value="world" saved="world"/>
+    <axislabelabsrel popt="[absolute, relative]" ptype="choice" default="absolute" listname="absolute or relative" datatype="Bool" value="absolute" saved="absolute"/>
+    <axislabeldirectionsystem popt="[J2000, B1950, GALACTIC, ECLIPTIC, SUPERGAL]" ptype="choice" default="J2000" listname="direction reference" datatype="Bool" value="J2000" saved="J2000"/>
+    <axislabeldirectionunit popt="[deg, arcmin, arcsec, rad]" ptype="userchoice" default="arcsec" listname="direction unit" datatype="Bool" value="arcsec" saved="arcsec"/>
+    <axislabelfrequencysystem popt="[LSRK, LSRD, BARY, GEO, TOPO]" ptype="choice" default="LSRK" listname="spectral reference" datatype="Bool" value="LSRK" saved="LSRK"/>
+    <axislabelspectypeunit popt="[radio velocity [m/s], radio velocity [km/s], radio velocity [Mm/s], optical velocity [m/s], optical velocity [km/s], frequency [Hz], frequency [MHz], frequency [GHz], wavelength [mm], wavelength [um], wavelength [nm], wavelength [Angstrom], air wavelength [mm], air wavelength [um], air wavelength [nm], air wavelength [Angstrom], channel]" ptype="userchoice" default="radio velocity [km/s]" listname="spectral unit" datatype="Bool" value="radio velocity [km/s]" saved="radio velocity [km/s]"/>
+    <axislabelspecfixedprec pmin="-1" pmax="20" ptype="intrange" default="-1" listname="spectral precision" presolution="1" datatype="String" value="-1" saved="-1"/>
+    <axislabelzlabeltype popt="[world, pixel, none]" ptype="choice" default="world" listname="movie axis label type" datatype="Bool" value="world" saved="world"/>
+    <axislabelzlabelpos popt="[inside, outside, inside-bl, inside-br, inside-tl, inside-tr, outside-bl, outside-br, outside-tl, outside-tr]" ptype="choice" default="inside" listname="movie axis label position" datatype="Bool" value="inside" saved="inside"/>
+   </axis_label_properties>
+   <beam_ellipse>
+    <beam popt="[Yes, No]" ptype="choice" default="Yes" listname="draw beam?" datatype="String" value="Yes" saved="Yes"/>
+    <beamoutline popt="[Outline, Filled]" ptype="choice" default="Outline" listname="beam style" datatype="String" value="Filled" saved="Filled"/>
+    <beamcolor popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="choice" default="foreground" listname="color" datatype="String" value="gray" saved="gray"/>
+    <beamlinewidth pmin="1" pmax="7" ptype="intrange" default="1" listname="line width" presolution="1" datatype="Bool" value="5" onrelease="0" saved="5"/>
+    <beamxcenter pmin="0" pmax="1" ptype="floatrange" default="0.1" listname="x center" presolution="0.02" datatype="Bool" value="0.1" onrelease="0" saved="0.1"/>
+    <beamycenter pmin="0" pmax="1" ptype="floatrange" default="0.1" listname="y center" presolution="0.02" datatype="Bool" value="0.1" onrelease="0" saved="0.1"/>
+   </beam_ellipse>
+  </dd>
+  <dd path="/home/marcela/Tesis Marcela/IRAS15445_recortados/moment2_13CO" dataType="image" displayType="raster">
+   <display_axes>
+    <xaxis popt="[Right Ascension, Declination, Frequency, Stokes]" ptype="choice" default="Right Ascension" listname="x-axis" datatype="String" value="Right Ascension" saved="Right Ascension"/>
+    <yaxis popt="[Right Ascension, Declination, Frequency, Stokes]" ptype="choice" default="Declination" listname="y-axis" datatype="String" value="Declination" saved="Declination"/>
+    <zaxis popt="[Right Ascension, Declination, Frequency, Stokes]" ptype="choice" default="Frequency" listname="z-axis" datatype="String" value="Frequency" saved="Frequency"/>
+   </display_axes>
+   <hidden_axes>
+    <haxis1 pmin="0" pmax="0" ptype="intrange" default="0" listname="Stokes" datatype="String" value="0" saved="0"/>
+   </hidden_axes>
+   <basic_settings>
+    <aspect popt="[fixed lattice, fixed world, flexible]" ptype="choice" default="fixed world" listname="aspect ratio" datatype="Bool" value="fixed world" saved="fixed world"/>
+    <pixeltreatment popt="[center, edge]" ptype="choice" default="center" listname="pixel treatment" datatype="Bool" value="edge" saved="edge"/>
+    <resample popt="[nearest, bilinear, bicubic]" ptype="choice" default="nearest" listname="resampling mode" datatype="Bool" value="bilinear" saved="bilinear"/>
+    <minmaxhist pmin="0.000226908" pmax="80.4551" ptype="minmaxhist" default="[0.000226908, 80.4551]" imageunits="km/s" listname="Data Range" datatype="Bool" value="[0.000226908, 70]" saved="[0.000226908, 70]">
+     <histarray unset="unset" datatype="String"/>
+    </minmaxhist>
+    <powercycles pmin="-5" pmax="5" ptype="floatrange" default="0" listname="Scaling Power Cycles" presolution="0.1" datatype="Bool" value="0" saved="0"/>
+    <colormap brtcont="[0.5, 0.5]" shiftslope="[0, 1]" popt="[Cube Helix, Greyscale 1, Greyscale 2, Hot Metal 1, Hot Metal 2, Misc. 1: Isophotes, Misc. 2: Topography, RGB 1, RGB 2, Rainbow 1, Rainbow 2, Rainbow 3, Rainbow 4, Smooth 1, Smooth 2, Smooth 3, Smooth 4]" ptype="choice" default="Rainbow 2" listname="Color Map" datatype="String" value="Rainbow 2" saved="Rainbow 2"/>
+   </basic_settings>
+   <position_tracking>
+    <absrel popt="[absolute, relative]" ptype="choice" default="absolute" listname="absolute or relative" datatype="Bool" value="absolute" saved="absolute"/>
+    <fracpix popt="[fractional, integral]" ptype="choice" default="integral" listname="fractional or integral pixel coordinates" datatype="Bool" value="integral" saved="integral"/>
+    <spectraltype popt="[optical velocity, radio velocity, wavelength, air wavelength, frequency]" ptype="choice" default="radio velocity" listname="spectral quantity" datatype="Bool" value="radio velocity" saved="radio velocity"/>
+    <spectralunit popt="[km/s, m/s, GHz, MHz, Hz, mm, um, nm, Angstrom]" ptype="userchoice" default="km/s" listname="spectral unit" datatype="Bool" value="km/s" saved="km/s"/>
+    <spectralnotation popt="[Flexible, Scientific, Fixed]" ptype="choice" default="Flexible" listname="numeric notation" datatype="Bool" value="Flexible" saved="Flexible"/>
+   </position_tracking>
+   <axis_labels>
+    <axislabelswitch ptype="boolean" default="1" listname="axis labelling &amp; annotation?" datatype="String" value="1" saved="1"/>
+    <titletext ptype="string" default="" listname="title" datatype="String" value="Moment 2 13CO" saved="Moment 2 13CO"/>
+    <xaxistext ptype="string" default="" listname="x axis label" datatype="String" value="J2000 RA offset (arcsec)" saved="J2000 RA offset (arcsec)"/>
+    <yaxistext ptype="string" default="" listname="y axis label" datatype="String" value="J2000 DEC offset (arcsec)" saved="J2000 DEC offset (arcsec)"/>
+    <xgridtype popt="[None, Tick marks, Full grid]" ptype="choice" default="Tick marks" listname="x grid type" datatype="String" value="Tick marks" saved="Tick marks"/>
+    <ygridtype popt="[None, Tick marks, Full grid]" ptype="choice" default="Tick marks" listname="y grid type" datatype="String" value="Tick marks" saved="Tick marks"/>
+    <ticklength pmin="0" pmax="20" ptype="floatrange" default="4" listname="tick mark length" presolution="0.1" datatype="String" value="4" saved="4"/>
+    <plotoutline ptype="boolean" default="1" listname="plot border?" datatype="String" value="1" saved="1"/>
+   </axis_labels>
+   <axis_label_properties>
+    <titletextcolor popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="userchoice" default="foreground" listname="title color" datatype="String" value="foreground" saved="foreground"/>
+    <xaxistextcolor popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="userchoice" default="foreground" listname="x axis label color" datatype="String" value="foreground" saved="foreground"/>
+    <yaxistextcolor popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="userchoice" default="foreground" listname="y axis label color" datatype="String" value="foreground" saved="foreground"/>
+    <xgridcolor popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="userchoice" default="foreground" listname="x grid/tick color" datatype="String" value="foreground" saved="foreground"/>
+    <ygridcolor popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="userchoice" default="foreground" listname="y grid/tick color" datatype="String" value="foreground" saved="foreground"/>
+    <plotoutlinecolor popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="userchoice" default="foreground" listname="plot border color" datatype="String" value="foreground" saved="foreground"/>
+    <labelposition popt="[Auto, bottom-left, bottom-right, top-left, top-right]" ptype="choice" default="Auto" listname="label position" datatype="String" value="Auto" saved="Auto"/>
+    <labelcharsize pmin="0.2" pmax="4" ptype="floatrange" default="1.2" listname="character size" presolution="0.05" datatype="String" value="0.75" saved="0.75"/>
+    <labelcharfont popt="[normal, roman, italic, script]" ptype="choice" default="normal" listname="character font" datatype="String" value="normal" saved="normal"/>
+    <labellinewidth pmin="0" pmax="5" ptype="floatrange" default="0.5" listname="line width" presolution="0.1" datatype="String" value="1" saved="1"/>
+    <axislabelpixelworld popt="[world, pixel]" ptype="choice" default="world" listname="world or pixel coordinates" datatype="Bool" value="world" saved="world"/>
+    <axislabelabsrel popt="[absolute, relative]" ptype="choice" default="absolute" listname="absolute or relative" datatype="Bool" value="relative" saved="relative"/>
+    <axislabeldirectionsystem popt="[J2000, B1950, GALACTIC, ECLIPTIC, SUPERGAL]" ptype="choice" default="J2000" listname="direction reference" datatype="Bool" value="J2000" saved="J2000"/>
+    <axislabeldirectionunit popt="[deg, arcmin, arcsec, rad]" ptype="userchoice" default="arcsec" listname="direction unit" datatype="Bool" value="arcsec" saved="arcsec"/>
+    <axislabelfrequencysystem popt="[LSRK, LSRD, BARY, GEO, TOPO]" ptype="choice" default="LSRK" listname="spectral reference" datatype="Bool" value="LSRK" saved="LSRK"/>
+    <axislabelspectypeunit popt="[radio velocity [m/s], radio velocity [km/s], radio velocity [Mm/s], optical velocity [m/s], optical velocity [km/s], frequency [Hz], frequency [MHz], frequency [GHz], wavelength [mm], wavelength [um], wavelength [nm], wavelength [Angstrom], air wavelength [mm], air wavelength [um], air wavelength [nm], air wavelength [Angstrom], channel]" ptype="userchoice" default="radio velocity [km/s]" listname="spectral unit" datatype="Bool" value="radio velocity [km/s]" saved="radio velocity [km/s]"/>
+    <axislabelspecfixedprec pmin="-1" pmax="20" ptype="intrange" default="-1" listname="spectral precision" presolution="1" datatype="String" value="-1" saved="-1"/>
+    <axislabelzlabeltype popt="[world, pixel, none]" ptype="choice" default="world" listname="movie axis label type" datatype="Bool" value="world" saved="world"/>
+    <axislabelzlabelpos popt="[inside, outside, inside-bl, inside-br, inside-tl, inside-tr, outside-bl, outside-br, outside-tl, outside-tr]" ptype="choice" default="inside" listname="movie axis label position" datatype="Bool" value="inside" saved="inside"/>
+   </axis_label_properties>
+   <beam_ellipse>
+    <beam popt="[Yes, No]" ptype="choice" default="Yes" listname="draw beam?" datatype="String" value="No" saved="No"/>
+    <beamoutline popt="[Outline, Filled]" ptype="choice" default="Outline" listname="beam style" datatype="String" value="Filled" saved="Filled"/>
+    <beamcolor popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="choice" default="foreground" listname="color" datatype="String" value="gray" saved="gray"/>
+    <beamlinewidth pmin="1" pmax="7" ptype="intrange" default="1" listname="line width" presolution="1" datatype="Bool" value="7" onrelease="0" saved="7"/>
+    <beamxcenter pmin="0" pmax="1" ptype="floatrange" default="0.1" listname="x center" presolution="0.02" datatype="Bool" value="0.1" onrelease="0" saved="0.1"/>
+    <beamycenter pmin="0" pmax="1" ptype="floatrange" default="0.1" listname="y center" presolution="0.02" datatype="Bool" value="0.1" onrelease="0" saved="0.1"/>
+   </beam_ellipse>
+   <color_wedge>
+    <wedge popt="[Yes, No]" ptype="choice" default="No" listname="display color wedge?" datatype="String" value="Yes" saved="Yes"/>
+    <wedgethickness pmin="0.3" pmax="5" ptype="floatrange" default="1" listname="wedge thickness" presolution="0.1" datatype="Bool" value="0.7" onrelease="0" saved="0.7"/>
+    <wedgelabelspace pmin="0.1" pmax="2" ptype="floatrange" default="1" listname="wedge label space" presolution="0.05" datatype="Bool" value="1" onrelease="0" saved="1"/>
+    <wedgelabelcharsize pmin="0.2" pmax="4" ptype="floatrange" default="1.2" listname="character size" presolution="0.05" datatype="String" value="1.15" saved="1.15"/>
+    <orientation popt="[vertical, horizontal]" ptype="choice" default="vertical" listname="wedge orientation" datatype="String" value="vertical" saved="vertical"/>
+    <wedgeaxistext ptype="string" default="" listname="axis label" datatype="String" value="" saved=""/>
+    <wedgeaxistextcolor popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="userchoice" default="foreground" listname="axis label color" datatype="String" value="foreground" saved="foreground"/>
+    <wedgelabellinewidth pmin="0" pmax="5" ptype="floatrange" default="0.5" listname="line width" presolution="0.1" datatype="String" value="0.9" saved="0.9"/>
+    <wedgelabelcharfont popt="[normal, roman, italic, script]" ptype="choice" default="normal" listname="character font" datatype="String" value="normal" saved="normal"/>
+   </color_wedge>
+  </dd>
+  <dd path="/home/marcela/Tesis Marcela/IRAS15445_recortados/I15445_cont" dataType="image" displayType="contour">
+   <display_axes>
+    <xaxis popt="[Right Ascension, Declination, Frequency, Stokes]" ptype="choice" default="Right Ascension" listname="x-axis" datatype="String" value="Right Ascension" saved="Right Ascension"/>
+    <yaxis popt="[Right Ascension, Declination, Frequency, Stokes]" ptype="choice" default="Declination" listname="y-axis" datatype="String" value="Declination" saved="Declination"/>
+    <zaxis popt="[Right Ascension, Declination, Frequency, Stokes]" ptype="choice" default="Frequency" listname="z-axis" datatype="String" value="Frequency" saved="Frequency"/>
+   </display_axes>
+   <hidden_axes>
+    <haxis1 pmin="0" pmax="0" ptype="intrange" default="0" listname="Stokes" datatype="String" value="0" saved="0"/>
+   </hidden_axes>
+   <basic_settings>
+    <aspect popt="[fixed lattice, fixed world, flexible]" ptype="choice" default="fixed world" listname="aspect ratio" datatype="Bool" value="fixed world" saved="fixed world"/>
+    <pixeltreatment popt="[center, edge]" ptype="choice" default="center" listname="pixel treatment" datatype="Bool" value="edge" saved="edge"/>
+    <resample popt="[nearest, bilinear, bicubic]" ptype="choice" default="nearest" listname="resampling mode" datatype="Bool" value="bilinear" saved="bilinear"/>
+    <rellevels ptype="array" default="[0.2, 0.4, 0.6, 0.8]" listname="Relative Contour Levels" datatype="String" value="[0.2, 0.4, 0.6, 0.8]" saved="[0.2, 0.4, 0.6, 0.8]"/>
+    <basecontour pmin="-0.0006" pmax="0.0207" ptype="floatrange" default="0" listname="Base Contour Level" presolution="0.0001" datatype="Bool" value="0.0064" onrelease="0" saved="0.0064"/>
+    <unitcontour pmin="-0.0006" pmax="0.0207" ptype="floatrange" default="0.0207" listname="Unit Contour Level" presolution="0.0001" datatype="Bool" value="0.0207" onrelease="0" saved="0.0207"/>
+    <line pmin="0" pmax="5" ptype="floatrange" default="0.5" listname="Line width" presolution="0.1" datatype="Bool" value="5" saved="5"/>
+    <dashneg ptype="boolean" default="1" listname="Dash negative contours?" datatype="Bool" value="1" saved="1"/>
+    <dashpos ptype="boolean" default="0" listname="Dash positive contours?" datatype="Bool" value="0" saved="0"/>
+    <color popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="userchoice" default="foreground" listname="Line color" datatype="Bool" value="gray" saved="gray"/>
+   </basic_settings>
+   <position_tracking>
+    <absrel popt="[absolute, relative]" ptype="choice" default="absolute" listname="absolute or relative" datatype="Bool" value="absolute" saved="absolute"/>
+    <fracpix popt="[fractional, integral]" ptype="choice" default="integral" listname="fractional or integral pixel coordinates" datatype="Bool" value="integral" saved="integral"/>
+    <spectraltype popt="[optical velocity, radio velocity, wavelength, air wavelength, frequency]" ptype="choice" default="radio velocity" listname="spectral quantity" datatype="Bool" value="radio velocity" saved="radio velocity"/>
+    <spectralunit popt="[km/s, m/s, GHz, MHz, Hz, mm, um, nm, Angstrom]" ptype="userchoice" default="km/s" listname="spectral unit" datatype="Bool" value="km/s" saved="km/s"/>
+    <spectralnotation popt="[Flexible, Scientific, Fixed]" ptype="choice" default="Flexible" listname="numeric notation" datatype="Bool" value="Flexible" saved="Flexible"/>
+   </position_tracking>
+   <axis_labels>
+    <axislabelswitch ptype="boolean" default="1" listname="axis labelling &amp; annotation?" datatype="String" value="1" saved="1"/>
+    <titletext ptype="string" default="" listname="title" datatype="String" value="I15445_cont" saved="I15445_cont"/>
+    <xaxistext ptype="string" default="" listname="x axis label" datatype="String" value="" saved=""/>
+    <yaxistext ptype="string" default="" listname="y axis label" datatype="String" value="" saved=""/>
+    <xgridtype popt="[None, Tick marks, Full grid]" ptype="choice" default="Tick marks" listname="x grid type" datatype="String" value="Tick marks" saved="Tick marks"/>
+    <ygridtype popt="[None, Tick marks, Full grid]" ptype="choice" default="Tick marks" listname="y grid type" datatype="String" value="Tick marks" saved="Tick marks"/>
+    <ticklength pmin="0" pmax="20" ptype="floatrange" default="4" listname="tick mark length" presolution="0.1" datatype="String" value="4" saved="4"/>
+    <plotoutline ptype="boolean" default="1" listname="plot border?" datatype="String" value="1" saved="1"/>
+   </axis_labels>
+   <axis_label_properties>
+    <titletextcolor popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="userchoice" default="foreground" listname="title color" datatype="String" value="foreground" saved="foreground"/>
+    <xaxistextcolor popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="userchoice" default="foreground" listname="x axis label color" datatype="String" value="foreground" saved="foreground"/>
+    <yaxistextcolor popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="userchoice" default="foreground" listname="y axis label color" datatype="String" value="foreground" saved="foreground"/>
+    <xgridcolor popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="userchoice" default="foreground" listname="x grid/tick color" datatype="String" value="foreground" saved="foreground"/>
+    <ygridcolor popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="userchoice" default="foreground" listname="y grid/tick color" datatype="String" value="foreground" saved="foreground"/>
+    <plotoutlinecolor popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="userchoice" default="foreground" listname="plot border color" datatype="String" value="foreground" saved="foreground"/>
+    <labelposition popt="[Auto, bottom-left, bottom-right, top-left, top-right]" ptype="choice" default="Auto" listname="label position" datatype="String" value="Auto" saved="Auto"/>
+    <labelcharsize pmin="0.2" pmax="4" ptype="floatrange" default="1.2" listname="character size" presolution="0.05" datatype="String" value="1.2" saved="1.2"/>
+    <labelcharfont popt="[normal, roman, italic, script]" ptype="choice" default="normal" listname="character font" datatype="String" value="normal" saved="normal"/>
+    <labellinewidth pmin="0" pmax="5" ptype="floatrange" default="0.5" listname="line width" presolution="0.1" datatype="String" value="1.4" saved="1.4"/>
+    <axislabelpixelworld popt="[world, pixel]" ptype="choice" default="world" listname="world or pixel coordinates" datatype="Bool" value="world" saved="world"/>
+    <axislabelabsrel popt="[absolute, relative]" ptype="choice" default="absolute" listname="absolute or relative" datatype="Bool" value="absolute" saved="absolute"/>
+    <axislabeldirectionsystem popt="[J2000, B1950, GALACTIC, ECLIPTIC, SUPERGAL]" ptype="choice" default="J2000" listname="direction reference" datatype="Bool" value="J2000" saved="J2000"/>
+    <axislabeldirectionunit popt="[deg, arcmin, arcsec, rad]" ptype="userchoice" default="arcsec" listname="direction unit" datatype="Bool" value="arcsec" saved="arcsec"/>
+    <axislabelfrequencysystem popt="[LSRK, LSRD, BARY, GEO, TOPO]" ptype="choice" default="LSRK" listname="spectral reference" datatype="Bool" value="LSRK" saved="LSRK"/>
+    <axislabelspectypeunit popt="[radio velocity [m/s], radio velocity [km/s], radio velocity [Mm/s], optical velocity [m/s], optical velocity [km/s], frequency [Hz], frequency [MHz], frequency [GHz], wavelength [mm], wavelength [um], wavelength [nm], wavelength [Angstrom], air wavelength [mm], air wavelength [um], air wavelength [nm], air wavelength [Angstrom], channel]" ptype="userchoice" default="radio velocity [km/s]" listname="spectral unit" datatype="Bool" value="radio velocity [km/s]" saved="radio velocity [km/s]"/>
+    <axislabelspecfixedprec pmin="-1" pmax="20" ptype="intrange" default="-1" listname="spectral precision" presolution="1" datatype="String" value="-1" saved="-1"/>
+    <axislabelzlabeltype popt="[world, pixel, none]" ptype="choice" default="world" listname="movie axis label type" datatype="Bool" value="world" saved="world"/>
+    <axislabelzlabelpos popt="[inside, outside, inside-bl, inside-br, inside-tl, inside-tr, outside-bl, outside-br, outside-tl, outside-tr]" ptype="choice" default="inside" listname="movie axis label position" datatype="Bool" value="inside" saved="inside"/>
+   </axis_label_properties>
+   <beam_ellipse>
+    <beam popt="[Yes, No]" ptype="choice" default="Yes" listname="draw beam?" datatype="String" value="Yes" saved="Yes"/>
+    <beamoutline popt="[Outline, Filled]" ptype="choice" default="Outline" listname="beam style" datatype="String" value="Outline" saved="Outline"/>
+    <beamcolor popt="[foreground, background, black, white, red, green, blue, cyan, magenta, yellow, gray]" ptype="choice" default="foreground" listname="color" datatype="String" value="black" saved="black"/>
+    <beamlinewidth pmin="1" pmax="7" ptype="intrange" default="1" listname="line width" presolution="1" datatype="Bool" value="5" onrelease="0" saved="5"/>
+    <beamxcenter pmin="0" pmax="1" ptype="floatrange" default="0.1" listname="x center" presolution="0.02" datatype="Bool" value="0.1" onrelease="0" saved="0.1"/>
+    <beamycenter pmin="0" pmax="1" ptype="floatrange" default="0.1" listname="y center" presolution="0.02" datatype="Bool" value="0.1" onrelease="0" saved="0.1"/>
+   </beam_ellipse>
+  </dd>
+ </dd-options>
+ <dp-options>
+  <Margins>
+   <leftmarginspacepg pmin="0" pmax="20" ptype="intrange" default="15" allowunset="0" listname="Left margin space (PG chars)" datatype="String" value="15" saved="15"/>
+   <bottommarginspacepg pmin="0" pmax="20" ptype="intrange" default="13" allowunset="0" listname="Bottom margin space (PG chars)" datatype="String" value="13" saved="13"/>
+   <rightmarginspacepg pmin="0" pmax="20" ptype="intrange" default="4" allowunset="0" listname="Right margin space (PG chars)" datatype="String" value="4" saved="4"/>
+   <topmarginspacepg pmin="0" pmax="20" ptype="intrange" default="4" allowunset="0" listname="Top margin space (PG chars)" datatype="String" value="4" saved="4"/>
+  </Margins>
+  <Number_of_panels>
+   <nxpanels pmin="1" pmax="5" ptype="intrange" default="1" allowunset="0" listname="Number of panels in x" datatype="String" value="1" saved="1"/>
+   <nypanels pmin="1" pmax="5" ptype="intrange" default="1" allowunset="0" listname="Number of panels in y" datatype="String" value="1" saved="1"/>
+   <xspacing pmin="0" pmax="0.49" ptype="floatrange" default="0" allowunset="0" listname="X-Spacing of Panels" datatype="String" value="0" saved="0"/>
+   <yspacing pmin="0" pmax="0.49" ptype="floatrange" default="0" allowunset="0" listname="Y-Spacing of Panels" datatype="String" value="0" saved="0"/>
+  </Number_of_panels>
+  <basic_settings>
+   <bkgdclr help="Color assigned to 'background' in other color choices.&#xa;Affects esp. margins surrounding the image.  Black&#xa;background implies white 'foreground' (default for&#xa;lettering, etc.), and vice versa.  White background is&#xa;usually the preferred setting before printing." editable="0" popt="[black, white]" ptype="choice" default="black" allowunset="0" listname="Background Color" datatype="String" value="white" saved="white"/>
+  </basic_settings>
+ </dp-options>
+ <dp-settings>
+  <zoom blc="[-0.5, -0.5]" trc="[70.5, 70.5]"/>
+  <animator animrate="10" mode="Blink" zindex="0" bindex="0"/>
+ </dp-settings>
+ <gui-settings>
+  <dock-settings data="AAAA/wAAAAD9AAAAAgAAAAAAAAI7AAAC8vwCAAAAAfsAAAAaAEkAbQBhAGcAZQAgAEQAaQBzAHAAbABhAHkBAAAAbQAAAvIAAACPAP///wAAAAEAAAI7AAAC8vwCAAAAA/sAAAAcAEEAbgBpAG0AYQB0AG8AcgBIAG8AbABkAGUAcgEAAAB6AAAATQAAAE0AAABN+wAAACgAQwB1AHIAcwBvAHIAVAByAGEAYwBrAGkAbgBnAEgAbwBsAGQAZQByAQAAAOcAAAD/AAAA/wAAAP/7AAAAGABRAHQAUgBlAGcAaQBvAG4ARABvAGMAawEAAAIGAAABSgAAAUoAAAFKAAAAAAAAAvIAAAAEAAAABAAAAAgAAAAI/AAAAAMAAAACAAAAAQAAABgATQBhAGkAbgAgAFQAbwBvAGwAYgBhAHIBAAAAAP////8AAAAAAAAAAAAAAAIAAAACAAAAGgBNAG8AdQBzAGUAIABUAG8AbwBsAGIAYQByAQAAAAD/////AAAAAAAAAAAAAAAcAEMAdQBzAHQAbwBtACAAVABvAG8AbABiAGEAcgAAAAAA/////wAAAAAAAAAAAAAAAgAAAAEAAAAgAEMAdQBzAHQAbwBtACAAVABvAG8AbABiAGEAcgAgADIAAAAAAP////8AAAAAAAAAAA=="/>
+  <window-size width="1148" height="885"/>
+ </gui-settings>
+ <shape-options last_file="" last_directory="" hidden="" window_visible="0" last_format=""/>
+</casaviewer-restore>
