@@ -121,8 +121,8 @@ def gauss_model(Molines_A_df,cube,px,channel,ruido,plot=False):
             plt.text(min(x)+min(x)/40,max(y)-max(y)/11,r'$\mu =$ '+str(round(pars['peak1_center'].value,2))+' km/s',color='blue',fontsize=13)
             plt.text(min(x)+min(x)/40,max(y)-2*max(y)/11,r'$\sigma =$ '+str(round(pars['peak1_sigma'].value,2))+' km/s',color='blue',fontsize=13)
             
-            plt.text(min(x)+min(x)/40,max(y)-3*max(y)/11,r'$\mu =$ '+str(round(pars['peak2_center'].value,2))+' km/s',color='darkorange',fontsize=13)
-            plt.text(min(x)+min(x)/40,max(y)-4*max(y)/11,r'$\sigma =$ '+str(round(pars['peak2_sigma'].value,2))+' km/s',color='darkorange',fontsize=13)
+            plt.text(min(x)+min(x)/40,max(y)-3*max(y)/11,r'$\mu =$ '+str(round(pars['peak2_center'].value,2))+' km/s',color='red',fontsize=13)
+            plt.text(min(x)+min(x)/40,max(y)-4*max(y)/11,r'$\sigma =$ '+str(round(pars['peak2_sigma'].value,2))+' km/s',color='red',fontsize=13)
     
     else:
         if plot == True:
@@ -130,6 +130,43 @@ def gauss_model(Molines_A_df,cube,px,channel,ruido,plot=False):
             fig = plotpix(Molines_A_df,px,[channel[0],channel[1]])
             
     return pars,comps,out,fig
+
+def gauss_model_outflows(Molines_A_df,cube,px,channel,plot=False):
+    
+    x_datos = Molines_A_df[px].index[channel[0]:channel[1]]
+    y_datos = Molines_A_df[px].iloc[channel[0]:channel[1]]
+    
+    # Secciones para wid
+    secc1 = Molines_A_df[px].iloc[channel[0]+30:channel[1]-30]
+
+    # Mitad de los canales
+    med = (y_datos.index.max()-y_datos.index.min())/2 + y_datos.index.min()
+    # Modelo de gaussiana
+    gmodel = Model(gaussian)
+    result = gmodel.fit(y_datos, x=x_datos, amp=max(y_datos), cen=y_datos[y_datos==max(y_datos)].index[0], wid=(secc1.index[0]-med)/2)
+    pars= result.params
+    
+    if plot == True:
+        # Data
+        fig = plotpix(Molines_A_df,px,[channel[0],channel[1]])
+        
+        plt.xticks(fontsize=14)
+        plt.yticks(fontsize=14)
+        
+        plt.tick_params(axis='both', direction='in', length=5, width=1.5)
+        
+        plt.minorticks_on()
+        plt.tick_params(axis='both', which='minor', direction='in', length=2, width=1)
+        
+        # Ajuste 
+        plt.plot(x_datos, result.best_fit, '-', color='purple')
+        plt.text(min(x_datos)+min(x_datos)/40,max(y_datos)-max(y_datos)/11,r'$\mu =$ '+str(round(pars['cen'].value,2))+' km/s',color='green',fontsize=13)
+        plt.text(min(x_datos)+min(x_datos)/40,max(y_datos)-2*max(y_datos)/11,r'$\sigma =$ '+str(round(pars['wid'].value,2))+' km/s',color='black',fontsize=13)
+        
+        vsys = round(pars['cen'].value,2)
+        plt.vlines(vsys, -0.0005, max(result.best_fit),color='green',label='Vsys = '+str(vsys))
+        
+    return pars,result,fig
       
 def gaussian(x, amp, cen, wid):
     """1-d gaussian: gaussian(x, amp, cen, wid)"""

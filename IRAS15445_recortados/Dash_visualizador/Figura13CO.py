@@ -170,7 +170,7 @@ ax3.tick_params(axis='both', which='minor', direction='in', length=2, width=1)
 
 
 vsys = round(x[list(out.best_fit).index(out.best_fit[out.best_fit==max(out.best_fit)])],2)
-ax3.vlines(vsys, 0, 0.008,color='green',label='Vsys = '+str(vsys))
+ax3.vlines(vsys, 0,  max(out.best_fit),color='green',label='Vsys = '+str(vsys)+'km/s')
 
 # Ajuste 
 ax3.plot(x, out.best_fit, '-', color='purple')

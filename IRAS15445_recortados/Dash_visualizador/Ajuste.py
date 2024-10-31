@@ -121,8 +121,8 @@ def gauss_model(Molines_A_df,cube,px,channel,ruido,plot=False):
             plt.text(min(x)+min(x)/40,max(y)-max(y)/11,r'$\mu =$ '+str(round(pars['peak1_center'].value,2))+' km/s',color='blue',fontsize=13)
             plt.text(min(x)+min(x)/40,max(y)-2*max(y)/11,r'$\sigma =$ '+str(round(pars['peak1_sigma'].value,2))+' km/s',color='blue',fontsize=13)
             
-            plt.text(min(x)+min(x)/40,max(y)-3*max(y)/11,r'$\mu =$ '+str(round(pars['peak2_center'].value,2))+' km/s',color='darkorange',fontsize=13)
-            plt.text(min(x)+min(x)/40,max(y)-4*max(y)/11,r'$\sigma =$ '+str(round(pars['peak2_sigma'].value,2))+' km/s',color='darkorange',fontsize=13)
+            plt.text(min(x)+min(x)/40,max(y)-3*max(y)/11,r'$\mu =$ '+str(round(pars['peak2_center'].value,2))+' km/s',color='red',fontsize=13)
+            plt.text(min(x)+min(x)/40,max(y)-4*max(y)/11,r'$\sigma =$ '+str(round(pars['peak2_sigma'].value,2))+' km/s',color='red',fontsize=13)
     
     else:
         if plot == True:

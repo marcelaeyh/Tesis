@@ -10,10 +10,10 @@ def moments_params(linea):
     path = '/home/marcela/Tesis Marcela/IRAS15445_recortados/I15445.mstransform_cube_contsub_' + linea + '.fits'
 
     # Información de las líneas
-    # chans, box, includepix, params_contornos1 (start, end, size), params_contornos1 (start, end, size), zmax
-    info = {'13CO': [[90,225],[220,300,225,285],0.011,[1.3,3.2,0.3],[7,33,3],35],
-            'SO2_4_3': [[120,220],[230,290,225,280],0.012,[1.3,3.2,0.3],[7,35,3],28],
-            'SO2_21_21': [[70,160],[230,290,235,278],0.0095,[0.8,2,0.3],[7,35,3],22]}
+    # chans, box, includepix, params_contornos1 (start, end, size), params_contornos2 (start, end, size), zmax
+    info = {'13CO': [[90,225],[220,300,225,285],0.011,[1.2,2.82,0.4049],[0.23*59.319,0.99*59.319,11],66],
+            'SO2_4_3': [[120,220],[230,290,225,280],0.012,[0.3*2.4,0.94*2.4,0.4],[0.2*67.04,0.99*67.04,10],55],
+            'SO2_21_21': [[70,160],[230,290,235,278],0.0095,[0.63,1.62,0.2475],[0.29*46.07,0.85*46.07,7],46]}
     return info[linea]
 
 def moment0(linea):

@@ -11,6 +11,8 @@ import Ajuste
 import cube_to_df as ctdf
 import moments
 from scipy.ndimage import zoom
+import matplotlib.cm as cm
+import matplotlib.colors as mcolors
 
 # Información de las líneas para los ajustes
 info = {'13CO': [[90, 225], 0.1, [0.9, 1, 1.3, 1.5, 1.8], ' $^{13}CO$'],
@@ -28,23 +30,26 @@ def create_figure(linea, show_contour1=True, show_contour2=True):
     params_cont1 = params_mom[3]
     params_cont2 = params_mom[4]
     
-    box = [params_mom[1][0],params_mom[1][2],params_mom[1][1],params_mom[1][3]]
+    box = [params_mom[1][0], params_mom[1][2], params_mom[1][1], params_mom[1][3]]
     channel = info[linea][0]
     ruido = info[linea][1]
     cont = info[linea][2]
     latex = info[linea][3]
     
-
     cube, Molines_A_df, coord = ctdf.Cube_to_df(path, box)
     
-
     data = moments.moment0(linea)
     data2 = moments.moment2(linea)
     data = np.flipud(data.value)
-    data2 = np.flipud(data2.value)
+    data2 = np.flipud(data2.value*2)
 
-    
-    fig = px.imshow(data2, color_continuous_scale='Viridis',zmin=0, zmax=params_mom[5])
+    terrain_r = cm.get_cmap('terrain_r')
+
+    # Crear una lista de colores a partir del colormap
+    norm = mcolors.Normalize(vmin=np.min(data2), vmax=np.max(data2))
+    terrain_r_colorscale = [[i, mcolors.to_hex(terrain_r(i))] for i in np.linspace(0, 1, 256)]
+
+    fig = px.imshow(data2, color_continuous_scale=terrain_r_colorscale, zmin=0, zmax=params_mom[5])
 
     ts = 10
     xt = np.arange(data.shape[1])[::ts]
@@ -79,8 +84,8 @@ def create_figure(linea, show_contour1=True, show_contour2=True):
         contours1 = go.Contour(
             z=data,
             showscale=False,
-            line_width=2,
-            colorscale='redor_r',
+            line_width=2.5,
+            colorscale=[[0, 'red'], [1, 'red']],
             contours=dict(
                 start=params_cont1[0],
                 end=params_cont1[1],
@@ -88,7 +93,8 @@ def create_figure(linea, show_contour1=True, show_contour2=True):
                 coloring='lines',
                 showlabels=True,
                 labelfont=dict(
-                    color='black'
+                    color='red',
+                    size=18
                 ),
             ),
             hoverinfo='skip',
@@ -103,7 +109,7 @@ def create_figure(linea, show_contour1=True, show_contour2=True):
             z=data2,
             showscale=False,
             line_width=1,
-            colorscale='gray_r',
+            colorscale=[[0, 'black'], [1, 'black']],
             contours=dict(
                 start=params_cont2[0],
                 end=params_cont2[1],
