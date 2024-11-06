@@ -89,7 +89,7 @@ def gauss_model(Molines_A_df,cube,px,channel,ruido,plot=False):
         pars=model.make_params()
         
         # Llenar los parámetros iniciales
-        for i,ff in zip(range(npeaks),[modell.summary()['params'],modelr.summary()['params'],]):
+        for i,ff in zip(range(npeaks),[modell.summary()['params'],modelr.summary()['params']]):
           pars['peak%d_center' % (i+1)].set(value=ff[1][1],vary=False) # fix nu_ul
           pars['peak%d_sigma' % (i+1)].set(value=ff[2][1],min=10,max=50)
           pars['peak%d_amplitude' % (i+1)].set(value=ff[0][1],min=0,max=4)

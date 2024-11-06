@@ -44,10 +44,11 @@ continuum = SpectralCube.read(path_cont)
 continuum  = continuum[:,220:300,225:285]
 
 box = [220,225,300,285]
+channel=[75,240]
 cube, Molines_A_df, coord = ctdf.Cube_to_df(path, box)
 Molines_A_df['mean'] = Molines_A_df.sum(axis=1)/4800
 
-pars,comps, out,matplotlib_fig = Ajuste.gauss_model(Molines_A_df, cube, 'mean', [0,320], 0.1, plot=True)
+pars,comps, out,matplotlib_fig = Ajuste.gauss_model(Molines_A_df, cube, 'mean', channel, 0.1, plot=True)
 
 #for i in range(len(cube_include)):
 #    plt.figure()
@@ -149,13 +150,13 @@ ax2.legend(handles=[dust_contour_legend], fontsize=14)
 
 # Tercer gráfico (gráfico adicional cubriendo toda la segunda fila)
 ax3 = plt.subplot(gs[1, :])  # Un solo gráfico que cubre ambas columnas en la segunda fila
-ax3.step(Molines_A_df.sum(axis=1).index,Molines_A_df.sum(axis=1)/4800,color='black')
+ax3.step(Molines_A_df.sum(axis=1).index[channel[0]:channel[1]],Molines_A_df.sum(axis=1).iloc[channel[0]:channel[1]]/4800,color='black')
 ax3.set_title('13CO total line emission', fontsize=12)
 ax3.set_xlabel('Radio Velocity [km/s]',fontsize=12)
 ax3.set_ylabel('[Jy/Beam]',fontsize=12)
 
-x = Molines_A_df['mean'].index
-y = Molines_A_df['mean'].iloc
+x = Molines_A_df['mean'].index[channel[0]:channel[1]]
+y = Molines_A_df['mean'].iloc[channel[0]:channel[1]]
 
 for i in range(2):
     if i == 0:
