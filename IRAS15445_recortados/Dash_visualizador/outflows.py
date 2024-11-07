@@ -48,7 +48,7 @@ cube, Molines_A_df, coord = ctdf.Cube_to_df(path, box)
 
 # Pixeles para los cuales m2 es mayor o igual a 38.56
 pix = np.argwhere(m2_escalar >= 38.56)
-pix_center = np.argwhere(m2_escalar <= 38.56)
+pix_center = np.argwhere(m2_escalar < 38.56)
 
 columns1 = [f'Pix_{x}_{y}' for y, x in pix if y < 40]
 columns1 = [col for col in columns1 if col in Molines_A_df.columns]
@@ -100,12 +100,49 @@ plt.figure(figsize=(15,7))
 plt.subplot(1,3,1)
 plt.title('Upper outflow',fontsize=14)
 plt.imshow(m2_up, origin='lower', vmin=5, vmax=66, cmap='terrain_r')
+plt.contour(m0.value, levels=np.array([0.4, 0.6, 0.8, 0.94]) * round(np.nanmax(m0.value), 1), 
+                    linewidths=2, colors='red', linestyles='--')
+plt.contour(m2_up, levels=np.array([0.1,0.23, 0.28, 0.4, 0.65, 0.84, 0.99]) * np.nanmax(m2_up)*1.9, 
+                        linewidths=0.7, colors='black')
+
+plt.xlabel('J2000 RA offset [arcsec]',fontsize=12)
+plt.ylabel('J2000 DEC offset [arcsec]',fontsize=12)
+
+plt.tick_params(axis='both', direction='in', length=5, width=1.5,labelsize=11)
+plt.minorticks_on()
+plt.tick_params(axis='both', which='minor', direction='in', length=2, width=1)
+
+
 plt.subplot(1,3,2)
 plt.title('Bottom outflow',fontsize=14)
 plt.imshow(m2_down, origin='lower', vmin=5, vmax=66, cmap='terrain_r')
+plt.contour(m0.value, levels=np.array([0.4, 0.6, 0.8, 0.94]) * round(np.nanmax(m0.value), 1), 
+                    linewidths=2, colors='red', linestyles='--')
+plt.contour(m2_down, levels=np.array([0.1,0.23, 0.28, 0.4,0.8, 0.98, 0.99]) * np.nanmax(m2_down)*1.9, 
+                        linewidths=0.7, colors='black')
+
+plt.xlabel('J2000 RA offset [arcsec]',fontsize=12)
+plt.ylabel('J2000 DEC offset [arcsec]',fontsize=12)
+
+plt.tick_params(axis='both', direction='in', length=5, width=1.5,labelsize=11)
+plt.minorticks_on()
+plt.tick_params(axis='both', which='minor', direction='in', length=2, width=1)
+
 plt.subplot(1,3,3)
 plt.title('Center',fontsize=14)
 plt.imshow(m2_c, origin='lower', vmin=5, vmax=66, cmap='terrain_r')
+plt.contour(m0.value, levels=np.array([0.4, 0.6, 0.8, 0.94]) * round(np.nanmax(m0.value), 1), 
+                    linewidths=2, colors='red', linestyles='--')
+
+plt.contour(m2_c, levels=np.array([0.2,0.4,0.5,0.6]) * np.nanmax(m2_c)*1.9, 
+                        linewidths=0.7, colors='black')
+
+plt.xlabel('J2000 RA offset [arcsec]',fontsize=12)
+plt.ylabel('J2000 DEC offset [arcsec]',fontsize=12)
+
+plt.tick_params(axis='both', direction='in', length=5, width=1.5,labelsize=11)
+plt.minorticks_on()
+plt.tick_params(axis='both', which='minor', direction='in', length=2, width=1)
 
 #------------------------------------------------------------------------------------------------------------------
 # Espectros
