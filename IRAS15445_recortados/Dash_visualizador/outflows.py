@@ -134,7 +134,7 @@ plt.imshow(m2_c, origin='lower', vmin=5, vmax=66, cmap='terrain_r')
 plt.contour(m0.value, levels=np.array([0.4, 0.6, 0.8, 0.94]) * round(np.nanmax(m0.value), 1), 
                     linewidths=2, colors='red', linestyles='--')
 
-plt.contour(m2_c, levels=np.array([0.2,0.4,0.5,0.6]) * np.nanmax(m2_c)*1.9, 
+plt.contour(m2_c, levels=np.array([0.2,0.3,0.6,]) * np.nanmax(m2_c)*1.9, 
                         linewidths=0.7, colors='black')
 
 plt.xlabel('J2000 RA offset [arcsec]',fontsize=12)
