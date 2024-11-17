@@ -88,9 +88,10 @@ plt.figure(figsize=(15, 10))
 
 # Configuración de la cuadrícula
 gs = plt.GridSpec(2, 2, height_ratios=[3, 1])  # 2 filas, 2 columnas; la primera fila tiene dos gráficos, la segunda solo uno.
+plt.figure(figsize=(8,8))
 
 # Primer gráfico (Moment 0)
-ax1 = plt.subplot(gs[0, 0])  # Primer gráfico en la primera columna
+ax1 = plt.subplot() # Primer gráfico en la primera columna
 im1 = ax1.imshow(m0.value, origin='lower', cmap=new_cmap.reversed())
 
 # Cambiar los nombres de los ejes (usar x e y)
@@ -118,6 +119,8 @@ cont1 = ax1.contour(continuum[0].value, levels=np.array([0.3, 0.5, 0.7, 0.9, 1])
 dust_contour_legend = Line2D([], [], color='red', linestyle='--', linewidth=2, label='Dust Continuum Emission')
 ax1.legend(handles=[dust_contour_legend], fontsize=14)
 
+output_filename = 'SO2_4_3_moment0.png'
+plt.savefig(output_filename, dpi=300, bbox_inches='tight')  # 'dpi=300' aumenta la resolución
 # Segundo gráfico (Moment 2)
 ax2 = plt.subplot(gs[0, 1])  # Segundo gráfico en la segunda columna
 m2_escalar = m2.value * 1.9
