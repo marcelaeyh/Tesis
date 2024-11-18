@@ -53,4 +53,29 @@ for i in range(104,198):
     
     plt.savefig('/home/marcela/Tesis Marcela/IRAS15445_recortados/anim_13COline/'+str(i),dpi=300)
     
-    
+
+x_z_projection = np.mean(cube, axis=-2)  # Alternativamente: np.mean(cube, axis=0)
+z_tick_labels = np.round(Molines_A_df.index[::40]).astype(int)
+
+# Vista desde arriba 
+
+plt.figure(figsize=(10,5))
+im = plt.imshow(x_z_projection.T, origin='lower',aspect='auto')
+plt.gca().invert_xaxis()
+plt.yticks(ticks=np.arange(len(y_tick_labels))*10, labels=np.round(y_tick_labels, 2),fontsize=12)
+plt.xticks(ticks=np.arange(len(z_tick_labels))*40, labels=np.round(z_tick_labels, 2),fontsize=12)
+
+plt.xlabel('Radio Velocity [km/s]',fontsize=14)
+plt.ylabel('J2000 RA offset [arcsec]',fontsize=14)
+
+cbar = plt.colorbar(im)
+cbar.set_label('Intensidad [Jy/Beam]', fontsize=15) 
+cbar.ax.tick_params(labelsize=14)
+
+plt.savefig('/home/marcela/Tesis Marcela/IRAS15445_recortados/Vistatoroidal.png',dpi=300)
+
+
+
+
+
+
