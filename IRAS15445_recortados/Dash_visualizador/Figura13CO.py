@@ -44,7 +44,7 @@ continuum = SpectralCube.read(path_cont)
 continuum  = continuum[:,220:300,225:285]
 
 box = [220,225,300,285]
-channel=[75,240]
+channel=[85,230]
 cube, Molines_A_df, coord = ctdf.Cube_to_df(path, box)
 Molines_A_df['mean'] = Molines_A_df.sum(axis=1)/4800
 
@@ -83,15 +83,13 @@ for i in range(fade_start, n_colors):
 new_cmap = LinearSegmentedColormap.from_list('rainbow_fade_red', colors)
 # -----------------------------------------------------------------------------------------
 
-
-plt.figure(figsize=(15, 10))
+plt.figure(figsize=(15, 12))
 
 # Configuración de la cuadrícula
 gs = plt.GridSpec(2, 2, height_ratios=[3, 1])  # 2 filas, 2 columnas; la primera fila tiene dos gráficos, la segunda solo uno.
 
-plt.figure(figsize=(8,8))
 # Primer gráfico (Moment 0)
-ax1 = plt.subplot()  # Primer gráfico en la primera columna
+ax1 = plt.subplot(gs[0, 0])  # Primer gráfico en la primera columna
 im1 = ax1.imshow(m0.value, origin='lower', cmap=new_cmap.reversed())
 
 # Cambiar los nombres de los ejes (usar x e y)
@@ -119,8 +117,6 @@ cont1 = ax1.contour(continuum[0].value, levels=np.array([0.3, 0.5, 0.7, 0.9, 1])
 dust_contour_legend = Line2D([], [], color='red', linestyle='--', linewidth=2, label='Dust Continuum Emission')
 ax1.legend(handles=[dust_contour_legend], fontsize=14)
 
-output_filename = '13CO_moment0.png'
-plt.savefig(output_filename, dpi=300, bbox_inches='tight')  # 'dpi=300' aumenta la resolución
 # Segundo gráfico (Moment 2)
 ax2 = plt.subplot(gs[0, 1])  # Segundo gráfico en la segunda columna
 m2_escalar = m2.value * 1.9
@@ -151,8 +147,11 @@ cont2 = ax2.contour(m0.value, levels=np.array([0.4, 0.6, 0.8, 0.94]) * round(np.
 dust_contour_legend = Line2D([], [], color='red', linestyle='--', linewidth=2, label='Moment 0 Contours')
 ax2.legend(handles=[dust_contour_legend], fontsize=14)
 
+
+plt.figure(figsize=(15,5))
 # Tercer gráfico (gráfico adicional cubriendo toda la segunda fila)
-ax3 = plt.subplot(gs[1, :])  # Un solo gráfico que cubre ambas columnas en la segunda fila
+#ax3 = plt.subplot(gs[1, :])  # Un solo gráfico que cubre ambas columnas en la segunda fila
+ax3 = plt.subplot()
 ax3.step(Molines_A_df.sum(axis=1).index[channel[0]:channel[1]],Molines_A_df.sum(axis=1).iloc[channel[0]:channel[1]]/4800,color='black')
 ax3.set_title('13CO total line emission', fontsize=12)
 ax3.set_xlabel('Radio Velocity [km/s]',fontsize=12)
@@ -188,5 +187,5 @@ ax3.legend(fontsize=13)
 # Ajustar el layout para evitar que los gráficos se superpongan
 plt.tight_layout()
 
-output_filename = '13CO.png'  # Cambia la extensión si prefieres otro formato como .pdf, .svg, etc.
+output_filename = '13COline.png'  # Cambia la extensión si prefieres otro formato como .pdf, .svg, etc.
 plt.savefig(output_filename, dpi=300, bbox_inches='tight')  # 'dpi=300' aumenta la resolución
