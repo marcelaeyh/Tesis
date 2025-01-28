@@ -187,5 +187,5 @@ ax3.legend(fontsize=13)
 # Ajustar el layout para evitar que los gráficos se superpongan
 plt.tight_layout()
 
-output_filename = '13COline.png'  # Cambia la extensión si prefieres otro formato como .pdf, .svg, etc.
+output_filename = '13CO.png'  # Cambia la extensión si prefieres otro formato como .pdf, .svg, etc.
 plt.savefig(output_filename, dpi=300, bbox_inches='tight')  # 'dpi=300' aumenta la resolución

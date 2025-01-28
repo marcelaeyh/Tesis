@@ -48,7 +48,8 @@ cube, Molines_A_df, coord = ctdf.Cube_to_df(path, box)
 
 # Pixeles para los cuales m2 es mayor o igual a 38.56
 pix = np.argwhere(m2_escalar >= 38.56)
-pix_center = np.argwhere(m2_escalar < 38.56)
+pix_center = np.argwhere(m2_escalar < 24.5)
+pix_yellow = np.argwhere((m2_escalar < 38.56) & (m2_escalar > 24.5))
 
 columns1 = [f'Pix_{x}_{y}' for y, x in pix if y < 40]
 columns1 = [col for col in columns1 if col in Molines_A_df.columns]
@@ -59,13 +60,18 @@ columns2 = [col for col in columns2 if col in Molines_A_df.columns]
 columns3 = [f'Pix_{x}_{y}' for y, x in pix_center]
 columns3 = [col for col in columns3 if col in Molines_A_df.columns]
 
+columns4 = [f'Pix_{x}_{y}' for y, x in pix_yellow]
+columns4 = [col for col in columns4 if col in Molines_A_df.columns]
+
 Molines_filtrado1 = Molines_A_df[columns1]
 Molines_filtrado2 = Molines_A_df[columns2]
 Molines_filtrado3 = Molines_A_df[columns3]
+Molines_filtrado4 = Molines_A_df[columns4]
 
 Molines_A_df['mean1'] = Molines_filtrado1.sum(axis=1)/595
 Molines_A_df['mean2'] = Molines_filtrado2.sum(axis=1)/595
 Molines_A_df['mean3'] = Molines_filtrado3.sum(axis=1)/595
+Molines_A_df['mean4'] = Molines_filtrado4.sum(axis=1)/595
 
 # Ajustes
 # ------------------------------------------------------------------------------------------------------------------
@@ -77,6 +83,9 @@ plt.title('Outflow Up',fontsize=14)
 
 pars3,comps3,result3,fig3 = Ajuste.gauss_model(Molines_A_df, cube, 'mean3', channel, 0.01,plot=True)
 plt.title('Center',fontsize=14)
+
+pars4,comps4,result4,fig4 = Ajuste.gauss_model(Molines_A_df, cube, 'mean4', channel, 0.01,plot=True)
+plt.title('Middle region',fontsize=14)
 # -----------------------------------------------------------------------------------------------------------------
 
 # Graficos
@@ -85,6 +94,7 @@ plt.title('Center',fontsize=14)
 m2_up = np.zeros_like(m2_escalar)
 m2_down = np.zeros_like(m2_escalar)
 m2_c = np.zeros_like(m2_escalar)
+m2_middle = np.zeros_like(m2_escalar)
 
 for x,y in pix:
     if x>40:
@@ -94,15 +104,18 @@ for x,y in pix:
 
 for x, y in pix_center:
     m2_c[x, y] = m2_escalar[x, y]
+    
+for x, y in pix_yellow:
+    m2_middle[x, y] = m2_escalar[x, y]
 
 plt.figure(figsize=(15,7))
 
-plt.subplot(1,3,1)
+plt.subplot(1,4,1)
 plt.title('Upper outflow',fontsize=14)
 plt.imshow(m2_up, origin='lower', vmin=5, vmax=66, cmap='terrain_r')
 plt.contour(m0.value, levels=np.array([0.4, 0.6, 0.8, 0.94]) * round(np.nanmax(m0.value), 1), 
                     linewidths=2, colors='red', linestyles='--')
-plt.contour(m2_up, levels=np.array([0.1,0.23, 0.28, 0.4, 0.65, 0.84, 0.99]) * np.nanmax(m2_up)*1.9, 
+plt.contour(m2_up, levels=np.array([0.1,0.23, 0.28, 0.4, 0.65, 0.84, 0.99]) *1, 
                         linewidths=0.7, colors='black')
 
 plt.xlabel('J2000 RA offset [arcsec]',fontsize=12)
@@ -113,7 +126,7 @@ plt.minorticks_on()
 plt.tick_params(axis='both', which='minor', direction='in', length=2, width=1)
 
 
-plt.subplot(1,3,2)
+plt.subplot(1,4,2)
 plt.title('Bottom outflow',fontsize=14)
 plt.imshow(m2_down, origin='lower', vmin=5, vmax=66, cmap='terrain_r')
 plt.contour(m0.value, levels=np.array([0.4, 0.6, 0.8, 0.94]) * round(np.nanmax(m0.value), 1), 
@@ -128,7 +141,24 @@ plt.tick_params(axis='both', direction='in', length=5, width=1.5,labelsize=11)
 plt.minorticks_on()
 plt.tick_params(axis='both', which='minor', direction='in', length=2, width=1)
 
-plt.subplot(1,3,3)
+
+plt.subplot(1,4,3)
+plt.title('Middle region',fontsize=14)
+plt.imshow(m2_middle, origin='lower', vmin=5, vmax=66, cmap='terrain_r')
+plt.contour(m0.value, levels=np.array([0.4, 0.6, 0.8, 0.94]) * round(np.nanmax(m0.value), 1), 
+                    linewidths=2, colors='red', linestyles='--')
+plt.contour(m2_middle, levels=np.array([0.1,0.23, 0.28, 0.4,0.8, 0.98, 0.99]) * np.nanmax(m2_middle)*1.9, 
+                        linewidths=0.7, colors='black')
+
+plt.xlabel('J2000 RA offset [arcsec]',fontsize=12)
+plt.ylabel('J2000 DEC offset [arcsec]',fontsize=12)
+
+plt.tick_params(axis='both', direction='in', length=5, width=1.5,labelsize=11)
+plt.minorticks_on()
+plt.tick_params(axis='both', which='minor', direction='in', length=2, width=1)
+
+
+plt.subplot(1,4,4)
 plt.title('Center',fontsize=14)
 plt.imshow(m2_c, origin='lower', vmin=5, vmax=66, cmap='terrain_r')
 plt.contour(m0.value, levels=np.array([0.4, 0.6, 0.8, 0.94]) * round(np.nanmax(m0.value), 1), 
