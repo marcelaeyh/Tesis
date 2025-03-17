@@ -7,7 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def moments_params(linea):
-    path = '/home/marcela/Tesis Marcela/IRAS15445_recortados/I15445.mstransform_cube_contsub_' + linea + '.fits'
+    path = '/Users/mac/Tesis/IRAS15445_recortados/I15445.mstransform_cube_contsub_' + linea + '.fits'
 
     # Información de las líneas
     # chans, box, includepix, params_contornos1 (start, end, size), params_contornos2 (start, end, size), zmax
@@ -18,7 +18,7 @@ def moments_params(linea):
 
 def moment0(linea):
     params = moments_params(linea)
-    path = '/home/marcela/Tesis Marcela/IRAS15445_recortados/I15445.mstransform_cube_contsub_' + linea + '.fits'
+    path = '/Users/mac/Tesis/IRAS15445_recortados/I15445.mstransform_cube_contsub_' + linea + '.fits'
     
     cube_prueba = SpectralCube.read(path)
     
@@ -32,7 +32,7 @@ def moment0(linea):
 
 def moment2(linea):
     params = moments_params(linea)
-    path = '/home/marcela/Tesis Marcela/IRAS15445_recortados/I15445.mstransform_cube_contsub_' + linea + '.fits'
+    path = '/Users/mac/Tesis/IRAS15445_recortados/I15445.mstransform_cube_contsub_' + linea + '.fits'
     
     cube_prueba = SpectralCube.read(path)
     
@@ -43,3 +43,10 @@ def moment2(linea):
     m2 = cube_include.moment(order=2)/1e8 
    
     return m2
+
+'''
+for i in range(len(cube_include)):
+    plt.figure(figsize=(7,7))
+    plt.imshow(cube_include[i,:,:].value, origin='lower')
+    plt.show()
+'''

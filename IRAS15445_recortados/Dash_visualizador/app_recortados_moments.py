@@ -7,7 +7,7 @@ import base64
 from io import BytesIO
 import matplotlib.pyplot as plt
 import plotly.graph_objs as go
-import Ajuste 
+import ajustenuevo as Ajuste
 import cube_to_df as ctdf
 import moments
 from scipy.ndimage import zoom
@@ -24,7 +24,7 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.title = 'IRAS 15445-5449'
 
 def create_figure(linea, show_contour1=True, show_contour2=True):
-    path = '/home/marcela/Tesis Marcela/IRAS15445_recortados/I15445.mstransform_cube_contsub_' + linea + '.fits'
+    path = '/Users/mac/Tesis/IRAS15445_recortados/I15445.mstransform_cube_contsub_' + linea + '.fits'
     
     params_mom = moments.moments_params(linea)
     params_cont1 = params_mom[3]
@@ -198,11 +198,31 @@ def update_modal(clickData, is_open, linea):
             pixel_y = clickData['points'][0]['y']
             fig, Molines_A_df, cube, channel, ruido, _ = create_figure(linea)
             pixel_y = cube[channel[0]:channel[-1], :, :][0].shape[1] - 1 - pixel_y 
-            par, matplotlib_fig = Ajuste.gauss_model(Molines_A_df, cube, 'Pix_' + str(pixel_x) + '_' + str(pixel_y), channel, ruido, plot=True)
+            par,comps, out, matplotlib_fig = Ajuste.ajuste_chisqr(cube, Molines_A_df, channel, 'Pix_' + str(pixel_x) + '_' + str(pixel_y))
             img_src = convert_matplotlib_to_base64(matplotlib_fig)
             return True, img_src
     return False, ''
 
 if __name__ == '__main__':
     app.run_server(debug=True, port=8082)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -9,21 +9,25 @@ def gaussian(x, amp, cen, wid):
     """1-d gaussian: gaussian(x, amp, cen, wid)"""
     return (amp / (np.sqrt(2*np.pi) * wid)) * np.exp(-(x-cen)**2 / (2*wid**2))
 
+path = '/Users/mac/Tesis/IRAS15445_recortados/I15445.mstransform_cube_contsub_13CO.fits'
+#path = '/home/marcela/Tesis Marcela/IRAS15445_recortados/I15445.mstransform_cube_contsub_13CO.fits'
 
-path = '/home/marcela/Tesis Marcela/IRAS15445_recortados/I15445.mstransform_cube_contsub_13CO.fits'
-box = [220,225,300,285]
 
+box = [230,235,290,278]
+channel = [60,180]
+px = 'mean'
 cube, Molines_A_df, coord = ctdf.Cube_to_df(path, box)
-channel = [90,225]
+Molines_A_df['mean'] = Molines_A_df.sum(axis=1)/4800
 
-for k in range(0,80):
-    px = 'Pix_30_27'#+str(k)
+def ajuste_chisqr(cube, Molines_A_df, channel, px):
+    
+    #for k in range(0,80):
     
     x_datos = Molines_A_df[px].index[channel[0]:channel[1]]
     y_datos = Molines_A_df[px].iloc[channel[0]:channel[1]]
     
     # centro del canal
-    cen = np.linspace(0.8,1.2,10)* -90
+    cen = np.linspace(0.8,1.2,10)* -92
     cench= (y_datos.index.max()-y_datos.index.min())/2 + y_datos.index.min()
     
     cen = np.append(cen,cench)
@@ -120,18 +124,19 @@ for k in range(0,80):
     
     chisqrold = out_old.summary()['chisqr']
     #---------------------------------------------------------------------------------------------------
-    '''
+    
     if chisqrold < chisqrnew:
         pars = pars_old
         out = out_old
         comps = comps_old
-    '''
-    # Grafica Resultados!!
-    fig = plt.figure(figsize=(15,10))
     
+    # Grafica Resultados!!
+    fig = plt.figure(figsize=(15,5))
+    
+    '''
     #old
     plt.subplot(2,1,1)
-    plt.title(px+' - OLD',fontsize=16)
+    plt.title('SO2_21_21 - OLD',fontsize=16)
     plt.xlabel('Radio Velocity [km/s]',fontsize=13)
     plt.ylabel('$[Jy/beam]$',fontsize=13)
     plt.step(Molines_A_df[px].index[channel[0]:channel[1]],Molines_A_df[px].iloc[channel[0]:channel[1]],color='k')
@@ -158,11 +163,11 @@ for k in range(0,80):
     
     plt.text(min(x_datos)+min(x_datos)/40,max(y_datos)-3*max(y_datos)/11,r'$\mu =$ '+str(round(pars_old['peak2_center'].value,2))+' km/s',color='red',fontsize=13)
     plt.text(min(x_datos)+min(x_datos)/40,max(y_datos)-4*max(y_datos)/11,r'$\sigma =$ '+str(round(pars_old['peak2_sigma'].value,2))+' km/s',color='red',fontsize=13)
-
+    '''
     #new
-    plt.subplot(2,1,2)
+    #plt.subplot(2,1,2)
 
-    plt.title(px+' - NEW',fontsize=16)
+    #plt.title('SO2_21_21 - NEW',fontsize=16)
     plt.xlabel('Radio Velocity [km/s]',fontsize=13)
     plt.ylabel('$[Jy/beam]$',fontsize=13)
     plt.step(Molines_A_df[px].index[channel[0]:channel[1]],Molines_A_df[px].iloc[channel[0]:channel[1]],color='k')
@@ -191,3 +196,9 @@ for k in range(0,80):
     plt.text(min(x_datos)+min(x_datos)/40,max(y_datos)-4*max(y_datos)/11,r'$\sigma =$ '+str(round(pars['peak2_sigma'].value,2))+' km/s',color='red',fontsize=13)
 
     plt.tight_layout()
+    
+    return pars,comps, out, fig
+    
+ajuste_chisqr(cube,Molines_A_df, channel, px)
+
+

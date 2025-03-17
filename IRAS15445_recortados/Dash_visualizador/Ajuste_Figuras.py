@@ -3,11 +3,12 @@ import matplotlib.pyplot as plt
 from lmfit import Model
 from lmfit.models import GaussianModel
 from scipy.integrate import quad
+import cube_to_df as ctdf
 
 def plotpix(Molines_A_df,px,channel):
 
     fig = plt.figure(figsize=(15,5))
-    #plt.title(px,fontsize=16)
+    plt.title(px,fontsize=16)
     plt.xlabel('Radio Velocity [km/s]',fontsize=13)
     plt.ylabel('$[Jy/beam]$',fontsize=13)
     plt.step(Molines_A_df[px].index[channel[0]:channel[1]],Molines_A_df[px].iloc[channel[0]:channel[1]],color='k')
@@ -95,8 +96,8 @@ def gauss_model(Molines_A_df,cube,px,channel,ruido,plot=False):
           pars['peak%d_amplitude' % (i+1)].set(value=ff[0][1],min=0,max=4)
             
         # Hacer el fit al modelo inicial hasta que se ajusten las gaussianas
-        out=model.fit(y,pars,x=x) # run fitting algorithm
-        comps = out.eval_components(x=x) # fit results for each line
+        out=model.fit(y,pars,x=x) 
+        comps = out.eval_components(x=x) 
 
         if plot == True:
             # Data
@@ -171,3 +172,20 @@ def gauss_model_outflows(Molines_A_df,cube,px,channel,plot=False):
 def gaussian(x, amp, cen, wid):
     """1-d gaussian: gaussian(x, amp, cen, wid)"""
     return (amp / (np.sqrt(2*np.pi) * wid)) * np.exp(-(x-cen)**2 / (2*wid**2))
+
+'''
+path = '/Users/mac/Tesis/IRAS15445_recortados/I15445.mstransform_cube_contsub_13CO.fits'
+box = [220, 225, 300, 285]
+
+cube, Molines_A_df, coord = ctdf.Cube_to_df(path, box)
+channel = [90,210]
+
+for i in range(0,80):
+    px= 'Pix_30_'+str(i)
+
+    gauss_model(Molines_A_df, cube, px, channel, 0.1,plot=True)
+    #clas(Molines_A_df,cube,px,channel,0.1,plot=True)
+'''
+
+
+

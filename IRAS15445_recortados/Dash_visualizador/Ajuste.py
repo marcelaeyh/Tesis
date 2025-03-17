@@ -134,3 +134,19 @@ def gauss_model(Molines_A_df,cube,px,channel,ruido,plot=False):
 def gaussian(x, amp, cen, wid):
     """1-d gaussian: gaussian(x, amp, cen, wid)"""
     return (amp / (np.sqrt(2*np.pi) * wid)) * np.exp(-(x-cen)**2 / (2*wid**2))
+
+'''
+path = '/Users/mac/Tesis/IRAS15445_recortados/I15445.mstransform_cube_contsub_13CO.fits'
+box = [220, 225, 300, 285]
+
+cube, Molines_A_df, coord = ctdf.Cube_to_df(path, box)
+channel = [90,225]
+
+for i in range(0,80):
+    px= 'Pix_30_30'#+str(i)
+
+    pars, fig = gauss_model(Molines_A_df, cube, px, channel, 0.1,plot=True)
+    clas(Molines_A_df,cube,px,channel,0.1,plot=True)
+    
+'''
+

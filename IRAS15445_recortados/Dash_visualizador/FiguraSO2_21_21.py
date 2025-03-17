@@ -13,14 +13,14 @@ from lmfit.models import GaussianModel
 from matplotlib.colors import LinearSegmentedColormap
 from matplotlib.lines import Line2D
 
-path = '/Users/mac/Tesis/IRAS15445_recortados/I15445.mstransform_cube_contsub_SO2_4_3.fits'
+path = '/Users/mac/Tesis/IRAS15445_recortados/I15445.mstransform_cube_contsub_SO2_21_21.fits'
 path_cont = '/Users/mac/Tesis/IRAS15445_recortados/All_spw_continuum_temp.fits'
 
 def moment0(path):
     cube_prueba = SpectralCube.read(path)
     
-    cube_cut = cube_prueba[120:220,228:288,227:282]
-    cube_include = cube_cut.with_mask(cube_cut > 0.012*u.Jy/u.beam)  
+    cube_cut = cube_prueba[70:160,230:290,235:278]
+    cube_include = cube_cut.with_mask(cube_cut > 0.0095*u.Jy/u.beam)  
     #cube_include = cube_include.with_mask(cube_include < 0.03*u.Jy/u.beam)  
     
     m0 = cube_include.moment(order=0)/1000 
@@ -30,8 +30,8 @@ def moment0(path):
 def moment2(path):
     cube_prueba = SpectralCube.read(path)
     
-    cube_cut = cube_prueba[120:220,228:288,227:282]
-    cube_include = cube_cut.with_mask(cube_cut > 0.012*u.Jy/u.beam)  
+    cube_cut = cube_prueba[70:160,230:290,235:278]
+    cube_include = cube_cut.with_mask(cube_cut > 0.0095*u.Jy/u.beam)  
     #cube_include = cube_include.with_mask(cube_include < 0.03*u.Jy/u.beam)  
     
     m2 = cube_include.moment(order=2)/1e8 # pasar a km/s
@@ -42,10 +42,10 @@ m0 = moment0(path)
 m2 = moment2(path)
 
 continuum = SpectralCube.read(path_cont)
-continuum  = continuum[:,228:288,227:282]
+continuum  = continuum[:,230:290,235:278]
 
-box = [228,227,288,282]
-channel = [90,240]
+box = [230,235,290,278]
+channel = [60,180]
 cube, Molines_A_df, coord = ctdf.Cube_to_df(path, box)
 Molines_A_df['mean'] = Molines_A_df.sum(axis=1)/4800
 
@@ -62,7 +62,7 @@ nx = abs(box[3]-box[1])
 # Tamaño de píxel en segundos de arco
 delta = 3.61e-06 * 3600
 
-x = np.concatenate([-np.arange(-nx/2,0)*delta, -np.arange(nx/2)*delta])
+x = -np.concatenate([np.arange(-nx/2,0)*delta, np.arange(nx/2)*delta])
 y = np.concatenate([np.arange(-ny/2,0)*delta, np.arange(ny/2)*delta])
 
 # ---------------------------------------------------------------------------------------
@@ -86,18 +86,19 @@ new_cmap = LinearSegmentedColormap.from_list('rainbow_fade_red', colors)
 
 #plt.figure(figsize=(15, 12))
 
+plt.figure(figsize=(15,10))
 # Configuración de la cuadrícula
 #gs = plt.GridSpec(2, 2, height_ratios=[3, 1])  # 2 filas, 2 columnas; la primera fila tiene dos gráficos, la segunda solo uno.
 
-plt.figure(figsize=(15,10))
-# Primer gráfico (Moment 0)
-#ax1 = plt.subplot(gs[0, 0]) # Primer gráfico en la primera columna
 ax1 = plt.subplot()
+# Primer gráfico (Moment 0)
+#ax1 = plt.subplot(gs[0, 0])  # Primer gráfico en la primera columna
+
 im1 = ax1.imshow(m0.value, origin='lower', cmap=new_cmap.reversed())
 
 # Cambiar los nombres de los ejes (usar x e y)
 ax1.set_xticks(np.linspace(0, nx-1, 7))
-ax1.set_xticklabels(np.round(np.linspace(x.max(), x.min()-0.01, 7), 2),fontsize=12)
+ax1.set_xticklabels([0.27,0.18,0.09,0,-0.09,-0.18,-0.27],fontsize=12)
 ax1.set_yticks(np.linspace(0, ny-1, 7))
 ax1.set_yticklabels([-0.36,-0.24,-0.12,0,0.12,0.24,0.36],fontsize=12)
 
@@ -106,7 +107,7 @@ cbar1 = plt.colorbar(im1, ax=ax1)
 cbar1.set_label('[Jy/Beam . km/s]', fontsize=12)
 cbar1.ax.tick_params(labelsize=12)
 # Contornos en el primer gráfico
-contours1 = ax1.contour(m0.value, levels=np.array([0.3,0.45, 0.6, 0.8, 0.94]) * round(np.nanmax(m0.value), 1), 
+contours1 = ax1.contour(m0.value, levels=np.array([0.35,0.45, 0.6, 0.8, 0.9]) * round(np.nanmax(m0.value), 1), 
                         linewidths=0.7, colors='black')
 ax1.clabel(contours1, inline=True, fontsize=12)
 ax1.set_title('Moment 0', fontsize=14)
@@ -118,6 +119,7 @@ cont1 = ax1.contour(continuum[0].value, levels=np.array([0.3, 0.5, 0.7, 0.9, 1])
                     linewidths=2, colors='red', linestyles='--')
 
 dust_contour_legend = Line2D([], [], color='red', linestyle='--', linewidth=2, label='Dust Continuum Emission')
+
 ax1.legend(handles=[dust_contour_legend], fontsize=14)
 ax1.minorticks_on()
 
@@ -127,7 +129,7 @@ d = np.array([4.38,5.4,8.5])
 xx = 500 #UA
 ang = 2*np.arctan(xx/(2*d*2.063e+8))*3600*180/np.pi
 
-#ax1.hlines(30,15,ang[0]/delta+15,color='k')
+#ax1.hlines(30,17,ang[0]/delta+17,color='k')
 
 ax1.hlines(10,13,ang[0]/delta+13,color='k')
 ax1.text(13,8,'500 UA',fontsize=9)
@@ -141,21 +143,19 @@ ax1.hlines(4,13,ang[2]/delta+13,color='k')
 ax1.text(13,2,'500 UA',fontsize=9)
 ax1.text(4,3,'d=8.5 kpc',fontsize=11)
 
-
-plt.savefig('SO2_4_3_moment0', dpi=300, bbox_inches='tight')  # 'dpi=300' aumenta la resolución
+plt.savefig('SO2_21_21_moment0', dpi=300, bbox_inches='tight')  # 'dpi=300' aumenta la resolución
 
 
 # Segundo gráfico (Moment 2)
 #ax2 = plt.subplot(gs[0, 1])  # Segundo gráfico en la segunda columna
-
 plt.figure(figsize=(15,10))
 ax2 = plt.subplot()
-m2_escalar = m2.value * 1.9
-im2 = ax2.imshow(m2_escalar, origin='lower', vmin=5, vmax=55, cmap='terrain_r')
+m2_escalar = m2.value * 2.1
+im2 = ax2.imshow(m2_escalar, origin='lower', vmin=7, vmax=46, cmap='terrain_r')
 
 # Cambiar los nombres de los ejes (usar x e y)
 ax2.set_xticks(np.linspace(0, nx-1, 7))
-ax2.set_xticklabels(np.round(np.linspace(x.max(), x.min()-0.01, 7), 2),fontsize=12)
+ax2.set_xticklabels([0.27,0.18,0.09,0,-0.09,-0.18,-0.27],fontsize=12)
 ax2.set_yticks(np.linspace(0, ny-1, 7))
 ax2.set_yticklabels([-0.36,-0.24,-0.12,0,0.12,0.24,0.36],fontsize=12)
 
@@ -167,20 +167,20 @@ cbar2 = plt.colorbar(im2, ax=ax2)
 cbar2.set_label('[km/s]', fontsize=12)
 cbar2.ax.tick_params(labelsize=12)
 # Contornos en el segundo gráfico
-contours2 = ax2.contour(m2_escalar, levels=np.array([0.2, 0.25, 0.35, 0.5,0.65, 0.8, 0.99]) * np.nanmax(m2.value), 
+contours2 = ax2.contour(m2_escalar, levels=np.array([0.29, 0.38, 0.5,0.66, 0.85]) * np.nanmax(m2.value), 
                         linewidths=0.7, colors='black')
 ax2.clabel(contours2, inline=True, fontsize=12)
 ax2.set_title('Moment 2', fontsize=14)
 
 # Contornos sobre el segundo gráfico
-cont2 = ax2.contour(m0.value, levels=np.array([0.3,0.45, 0.6, 0.8, 0.94]) * round(np.nanmax(m0.value), 1), 
+cont2 = ax2.contour(m0.value, levels=np.array([0.35,0.45, 0.6, 0.8, 0.9]) * round(np.nanmax(m0.value), 1), 
                     linewidths=2, colors='red', linestyles='--')
 
 dust_contour_legend = Line2D([], [], color='red', linestyle='--', linewidth=2, label='Moment 0 Contours')
 ax2.legend(handles=[dust_contour_legend], fontsize=14)
 ax2.minorticks_on()
 
-plt.savefig('SO2_4_3_moment2', dpi=300, bbox_inches='tight')  # 'dpi=300' aumenta la resolución
+plt.savefig('SO2_21_21_moment2', dpi=300, bbox_inches='tight')  # 'dpi=300' aumenta la resolución
 
 
 # Tercer gráfico (gráfico adicional cubriendo toda la segunda fila)
@@ -188,7 +188,7 @@ plt.savefig('SO2_4_3_moment2', dpi=300, bbox_inches='tight')  # 'dpi=300' aument
 plt.figure(figsize=(15,5))
 ax3 = plt.subplot()
 ax3.step(Molines_A_df.sum(axis=1).index[channel[0]:channel[1]],Molines_A_df.sum(axis=1).iloc[channel[0]:channel[1]]/4800,color='black')
-ax3.set_title('SO2_4_3 mean line emission', fontsize=12)
+ax3.set_title('SO2_21_21 mean line emission', fontsize=12)
 ax3.set_xlabel('Radio Velocity [km/s]',fontsize=12)
 ax3.set_ylabel('[Jy/Beam]',fontsize=12)
 
@@ -222,5 +222,5 @@ ax3.legend(fontsize=13)
 # Ajustar el layout para evitar que los gráficos se superpongan
 plt.tight_layout()
 
-output_filename = 'SO2_4_3_mean_emission.png'  # Cambia la extensión si prefieres otro formato como .pdf, .svg, etc.
+output_filename = 'SO2_21_21_mean_emission.png'  # Cambia la extensión si prefieres otro formato como .pdf, .svg, etc.
 plt.savefig(output_filename, dpi=300, bbox_inches='tight')  # 'dpi=300' aumenta la resolución
