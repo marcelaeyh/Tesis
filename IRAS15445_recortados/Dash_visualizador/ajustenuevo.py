@@ -113,7 +113,7 @@ def ajuste_chisqr(cube, Molines_A_df, channel, px):
     pars_old=model.make_params()
     
     # Llenar los parámetros iniciales
-    for i,ff in zip(range(npeaks),[modell_old.summary()['params'],modelr_old.summary()['params'],]):
+    for i,ff in zip(range(npeaks),[modell_old.summary()['params'],modelr_old.summary()['params']]):
       pars_old['peak%d_center' % (i+1)].set(value=ff[1][1],vary=False) # fix nu_ul
       pars_old['peak%d_sigma' % (i+1)].set(value=ff[2][1],min=10,max=50)
       pars_old['peak%d_amplitude' % (i+1)].set(value=ff[0][1],min=0,max=4)

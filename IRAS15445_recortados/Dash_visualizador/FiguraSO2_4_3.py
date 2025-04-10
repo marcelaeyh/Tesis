@@ -12,6 +12,10 @@ from lmfit import Model
 from lmfit.models import GaussianModel
 from matplotlib.colors import LinearSegmentedColormap
 from matplotlib.lines import Line2D
+from matplotlib.patches import Ellipse
+from matplotlib.patches import FancyBboxPatch
+
+
 
 path = '/Users/mac/Tesis/IRAS15445_recortados/I15445.mstransform_cube_contsub_SO2_4_3.fits'
 path_cont = '/Users/mac/Tesis/IRAS15445_recortados/All_spw_continuum_temp.fits'
@@ -37,6 +41,8 @@ def moment2(path):
     m2 = cube_include.moment(order=2)/1e8 # pasar a km/s
    
     return m2
+
+beam = SpectralCube.read(path).beam
 
 m0 = moment0(path)
 m2 = moment2(path)
@@ -84,15 +90,15 @@ for i in range(fade_start, n_colors):
 new_cmap = LinearSegmentedColormap.from_list('rainbow_fade_red', colors)
 # -----------------------------------------------------------------------------------------
 
-#plt.figure(figsize=(15, 12))
+plt.figure(figsize=(15, 12))
 
 # Configuración de la cuadrícula
-#gs = plt.GridSpec(2, 2, height_ratios=[3, 1])  # 2 filas, 2 columnas; la primera fila tiene dos gráficos, la segunda solo uno.
+gs = plt.GridSpec(2, 2, height_ratios=[3, 1])  # 2 filas, 2 columnas; la primera fila tiene dos gráficos, la segunda solo uno.
 
-plt.figure(figsize=(15,10))
+#plt.figure(figsize=(15,10))
 # Primer gráfico (Moment 0)
-#ax1 = plt.subplot(gs[0, 0]) # Primer gráfico en la primera columna
-ax1 = plt.subplot()
+ax1 = plt.subplot(gs[0, 0]) # Primer gráfico en la primera columna
+#ax1 = plt.subplot()
 im1 = ax1.imshow(m0.value, origin='lower', cmap=new_cmap.reversed())
 
 # Cambiar los nombres de los ejes (usar x e y)
@@ -129,27 +135,39 @@ ang = 2*np.arctan(xx/(2*d*2.063e+8))*3600*180/np.pi
 
 #ax1.hlines(30,15,ang[0]/delta+15,color='k')
 
-ax1.hlines(10,13,ang[0]/delta+13,color='k')
-ax1.text(13,8,'500 UA',fontsize=9)
-ax1.text(4,9,'d=4.38 kpc',fontsize=11)
+ax1.hlines(5,9,ang[0]/delta+9,color='k')
+ax1.text(9,2,'500 UA',fontsize=12)
 
-ax1.hlines(7,13,ang[1]/delta+13,color='k')
-ax1.text(13,5,'500 UA',fontsize=9)
-ax1.text(4,6,'d=5.4 kpc',fontsize=11)
+# Beam
+beam_ellipse = Ellipse(
+    (50, 5), width=beam.minor.value/delta*3600, height=beam.major.value/delta*3600, angle=beam.pa.value,
+    edgecolor='black', facecolor='lightgray', lw=1)
 
-ax1.hlines(4,13,ang[2]/delta+13,color='k')
-ax1.text(13,2,'500 UA',fontsize=9)
-ax1.text(4,3,'d=8.5 kpc',fontsize=11)
+# Agregar la elipse al gráfico
+ax1.add_patch(beam_ellipse)
 
 
-plt.savefig('SO2_4_3_moment0', dpi=300, bbox_inches='tight')  # 'dpi=300' aumenta la resolución
+#ax1.hlines(10,13,ang[0]/delta+13,color='k')
+#ax1.text(13,8,'500 UA',fontsize=11)
+#ax1.text(4,9,'d=4.38 kpc',fontsize=12)
+
+#ax1.hlines(7,13,ang[1]/delta+13,color='k')
+#ax1.text(13,5,'500 UA',fontsize=11)
+#ax1.text(4,6,'d=5.4 kpc',fontsize=12)
+
+#ax1.hlines(4,13,ang[2]/delta+13,color='k')
+#ax1.text(13,2,'500 UA',fontsize=11)
+#ax1.text(4,3,'d=8.5 kpc',fontsize=12)
+
+
+#plt.savefig('SO2_4_3_moment0', dpi=300, bbox_inches='tight')  # 'dpi=300' aumenta la resolución
 
 
 # Segundo gráfico (Moment 2)
-#ax2 = plt.subplot(gs[0, 1])  # Segundo gráfico en la segunda columna
+ax2 = plt.subplot(gs[0, 1])  # Segundo gráfico en la segunda columna
 
-plt.figure(figsize=(15,10))
-ax2 = plt.subplot()
+#plt.figure(figsize=(15,10))
+#ax2 = plt.subplot()
 m2_escalar = m2.value * 1.9
 im2 = ax2.imshow(m2_escalar, origin='lower', vmin=5, vmax=55, cmap='terrain_r')
 
@@ -180,13 +198,37 @@ dust_contour_legend = Line2D([], [], color='red', linestyle='--', linewidth=2, l
 ax2.legend(handles=[dust_contour_legend], fontsize=14)
 ax2.minorticks_on()
 
-plt.savefig('SO2_4_3_moment2', dpi=300, bbox_inches='tight')  # 'dpi=300' aumenta la resolución
+# Beam
+beam_ellipse = Ellipse((50, 4), width=beam.minor.value/delta*3600, height=beam.major.value/delta*3600,
+        angle=beam.pa.value, edgecolor='black', facecolor='lightgray', lw=1,zorder=9)
+
+# Agregar la elipse al gráfico
+ax2.add_patch(beam_ellipse)
+
+rec = FancyBboxPatch(
+    (8, 1),       
+    10, 5,       
+    boxstyle="round,pad=0.02,rounding_size=0.5",  
+    facecolor='white',      
+    edgecolor='white',      
+    linewidth=1.5,
+    alpha=0.9,
+    zorder=10
+)
+
+# Agregar la elipse al gráfico
+ax2.add_patch(rec)
+
+ax2.hlines(5,9,ang[0]/delta+9,color='k',zorder=11)
+ax2.text(9,2,'500 UA',fontsize=12,zorder=12)
+
+#plt.savefig('SO2_4_3_moment2_44kpc', dpi=300, bbox_inches='tight')  # 'dpi=300' aumenta la resolución
 
 
 # Tercer gráfico (gráfico adicional cubriendo toda la segunda fila)
-#ax3 = plt.subplot(gs[1, :])  # Un solo gráfico que cubre ambas columnas en la segunda fila
-plt.figure(figsize=(15,5))
-ax3 = plt.subplot()
+ax3 = plt.subplot(gs[1, :])  # Un solo gráfico que cubre ambas columnas en la segunda fila
+#plt.figure(figsize=(15,5))
+#ax3 = plt.subplot()
 ax3.step(Molines_A_df.sum(axis=1).index[channel[0]:channel[1]],Molines_A_df.sum(axis=1).iloc[channel[0]:channel[1]]/4800,color='black')
 ax3.set_title('SO2_4_3 mean line emission', fontsize=12)
 ax3.set_xlabel('Radio Velocity [km/s]',fontsize=12)
@@ -222,5 +264,5 @@ ax3.legend(fontsize=13)
 # Ajustar el layout para evitar que los gráficos se superpongan
 plt.tight_layout()
 
-output_filename = 'SO2_4_3_mean_emission.png'  # Cambia la extensión si prefieres otro formato como .pdf, .svg, etc.
+output_filename = 'SO2_4_3_44kpc.png'  # Cambia la extensión si prefieres otro formato como .pdf, .svg, etc.
 plt.savefig(output_filename, dpi=300, bbox_inches='tight')  # 'dpi=300' aumenta la resolución

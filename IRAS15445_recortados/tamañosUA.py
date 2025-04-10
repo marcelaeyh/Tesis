@@ -36,7 +36,7 @@ a = ['Horizontal','Vertical']
 
 for i in range(len(a)):
     # Cálculo del tamaño
-    x = 2 * d * np.tan(ang/ 2) * 2.063e+8 # Factor kpc -> UA
+    x = 2 * 4.4 * np.tan(0.4/ 3600 * np.pi / 180/ 2) * 2.063e+8 # Factor kpc -> UA
     
     plt.plot(d, x, label=a[i])
 
