@@ -1,0 +1,13 @@
+imagename  = 'I15445_SO2_21_21/'
+moments    = 0
+axis       = 'spectral'
+region     = ''
+box        = '225,229,283,285'
+chans      = '70~160'
+stokes     = ''
+mask       = ''
+includepix = [0.0095, 0.08]
+excludepix = -1
+outfile    = 'moment0_SO2_21_21'
+stretch    = False
+#immoments( imagename='I15445_SO2_21_21/',moments=0,axis='spectral',region='',box='225,229,283,285',chans='70~160',stokes='',mask='',includepix=[0.0095, 0.08],excludepix=-1,outfile='moment0_SO2_21_21',stretch=False )
