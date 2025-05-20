@@ -1,6 +1,0 @@
-raster  = 'All_spw_continuum_temp.fits'
-contour = {}
-zoom    = 1
-axes    = {}
-out     = ''
-#imview( raster='All_spw_continuum_temp.fits',contour={},zoom=1,axes={},out='' )
