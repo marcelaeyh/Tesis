@@ -1,7 +1,6 @@
-Data_CASA/IRAS15445_spw*
+Data_CASA
 member.uid*
 EC2*
-Cut_Cubes/Data_CASA/I15445*
 Cut_Cubes/I15445*
 Cut_Cubes/All_spw*
-Cut_Cubes/Moments_CASA/moment*
+Cut_Cubes/Moments_CASA
