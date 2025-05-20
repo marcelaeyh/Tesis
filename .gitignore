@@ -1,5 +1,7 @@
-IRAS15445_spw*
+Data_CASA/IRAS15445_spw*
 member.uid*
+EC2*
+IRAS15445_recortados/Data_CASA/I15445*
 IRAS15445_recortados/I15445*
 IRAS15445_recortados/All_spw*
-IRAS15445_recortados/moment*
+IRAS15445_recortados/Moments_CASA/moment*
