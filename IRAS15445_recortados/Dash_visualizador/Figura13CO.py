@@ -87,15 +87,15 @@ for i in range(fade_start, n_colors):
 new_cmap = LinearSegmentedColormap.from_list('rainbow_fade_red', colors)
 # -----------------------------------------------------------------------------------------
 
-plt.figure(figsize=(15, 12))
+#plt.figure(figsize=(15, 12))
 
 # Configuración de la cuadrícula
-gs = plt.GridSpec(2, 2, height_ratios=[3, 1])  # 2 filas, 2 columnas; la primera fila tiene dos gráficos, la segunda solo uno.
+#gs = plt.GridSpec(2, 2, height_ratios=[3, 1])  # 2 filas, 2 columnas; la primera fila tiene dos gráficos, la segunda solo uno.
 
 #plt.figure(figsize=(15,10))
 # Primer gráfico (Moment 0)
-ax1 = plt.subplot(gs[0, 0])  # Primer gráfico en la primera columna
-#ax1 = plt.subplot()
+#ax1 = plt.subplot(gs[0, 0])  # Primer gráfico en la primera columna
+ax1 = plt.subplot()
 im1 = ax1.imshow(m0.value, origin='lower', cmap=new_cmap.reversed())
 
 # Cambiar los nombres de los ejes (usar x e y)
@@ -158,10 +158,10 @@ ax1.add_patch(beam_ellipse)
 #plt.savefig('13CO_moment0_44kpc.png', dpi=300, bbox_inches='tight')  # 'dpi=300' aumenta la resolución
 
 
-#plt.figure(figsize=(15,10))
+plt.figure(figsize=(15,10))
 # Segundo gráfico (Moment 2)
-ax2 = plt.subplot(gs[0, 1])  # Segundo gráfico en la segunda columna
-#ax2 = plt.subplot()
+#ax2 = plt.subplot(gs[0, 1])  # Segundo gráfico en la segunda columna
+ax2 = plt.subplot()
 m2_escalar = m2.value * 1.9
 im2 = ax2.imshow(m2_escalar, origin='lower', vmin=5, vmax=66, cmap='terrain_r')
 
@@ -184,8 +184,12 @@ ax2.clabel(contours2, inline=True, fontsize=12)
 ax2.set_title('Moment 2', fontsize=14)
 
 # Contornos sobre el segundo gráfico
-cont2 = ax2.contour(m0.value, levels=np.array([0.4, 0.6, 0.8, 0.94]) * round(np.nanmax(m0.value), 1), 
+#cont2 = ax2.contour(m0.value, levels=np.array([0.4, 0.6, 0.8, 0.94]) * round(np.nanmax(m0.value), 1), 
+#                    linewidths=2, colors='red', linestyles='--')
+
+cont2 = ax2.contour(continuum[0].value, levels=np.array([0.3, 0.5, 0.7, 0.9, 1]) * np.nanmax(continuum[0].value), 
                     linewidths=2, colors='red', linestyles='--')
+
 
 dust_contour_legend = Line2D([], [], color='red', linestyle='--', linewidth=2, label='Moment 0 Contours')
 ax2.legend(handles=[dust_contour_legend], fontsize=14)
