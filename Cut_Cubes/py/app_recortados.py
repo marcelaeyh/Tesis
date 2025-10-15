@@ -20,7 +20,7 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.title = 'IRAS 15445-5449'
 
 def create_figure(linea):
-    path = '/home/marcela/Tesis Marcela/IRAS15445_recortados/I15445.mstransform_cube_contsub_' + linea + '.fits'
+    path = '/Users/mac/Tesis/IRAS15445_recortados/I15445.mstransform_cube_contsub_' + linea + '.fits'
     box = [205, 205, 305, 305]
     channel = info[linea][0]
     ruido = info[linea][1]

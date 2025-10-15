@@ -46,22 +46,20 @@ ax1 = plt.subplot()
 im1 = ax1.imshow(continuum[0].value,origin='lower',cmap= new_cmap.reversed())
 
 
-ax1.set_xlabel('J2000 RA offset [arcsec]',fontsize=14)
-ax1.set_ylabel('J2000 DEC offset [arcsec]',fontsize=14)
+ax1.set_xlabel('J2000 RA offset (′′)',fontsize=17)
+ax1.set_ylabel('J2000 DEC offset (′′)',fontsize=17)
 
 # Contornos en continuo
-ax1.contour(continuum[0].value, levels=np.array([0.3, 0.5, 0.7, 0.9]) * np.nanmax(continuum[0].value), 
+con = ax1.contour(continuum[0].value, levels=np.array([0.3, 0.5, 0.7, 0.9]) * np.nanmax(continuum[0].value), 
                     linewidths=1, colors='k', linestyles='-')
 
-ax1.contour(continuum[0].value, levels=[0.3], colors='red', linewidths=1.5, alpha=0.7)
+ax1.clabel(con, inline=True, fontsize=15)
 
-custom_lines = [Line2D([0], [0], color='red', lw=1.5, alpha=0.7, label=r'$3\sigma$')]
-ax1.legend(handles=custom_lines, fontsize=16)
 
 # Añadir la barra de colores
 cbar1 = plt.colorbar(im1, ax=ax1,pad=0.07)
-cbar1.set_label('Intensity [mJy/Beam]', fontsize=14)
-cbar1.ax.tick_params(labelsize=14)
+cbar1.set_label('Intensity (mJy/Beam)', fontsize=15)
+cbar1.ax.tick_params(labelsize=15)
 
 ax1.set_xticks(np.arange(0,nx+1,8))
 ax1.set_xticklabels(np.round((np.arange(0,nx+1,8)-max_index[1])*delta,1))
@@ -69,7 +67,9 @@ ax1.set_xticklabels(np.round((np.arange(0,nx+1,8)-max_index[1])*delta,1))
 ax1.set_yticks(np.arange(0,ny+1,8))
 ax1.set_yticklabels(np.round((np.arange(0,ny+1,8)-max_index[0])*delta,1))
 
-ax1.tick_params(axis='both', which='major', labelsize=14)
+
+ax1.tick_params(axis='both', which='major', labelsize=15)  # números más grandes
+ax1.tick_params(axis='both', which='minor', labelsize=15)  # si tienes minor ticks
 
 ax1.set_aspect('equal')
 ax1.set_ylim(0,46)
@@ -93,5 +93,5 @@ beam_ellipse = Ellipse(
 # Agregar la elipse al gráfico
 ax1.add_patch(beam_ellipse)
 
-#plt.savefig('Dust_continuum', dpi=300, bbox_inches='tight')
+plt.savefig('/Users/mac/Tesis/Cut_Cubes/Emission_Figures/Dust_continuum', dpi=300, bbox_inches='tight')
 

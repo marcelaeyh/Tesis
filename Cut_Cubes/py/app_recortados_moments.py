@@ -198,7 +198,7 @@ def update_modal(clickData, is_open, linea):
             pixel_y = clickData['points'][0]['y']
             fig, Molines_A_df, cube, channel, ruido, _ = create_figure(linea)
             pixel_y = cube[channel[0]:channel[-1], :, :][0].shape[1] - 1 - pixel_y 
-            par,comps, out, matplotlib_fig = Ajuste.ajuste_chisqr(cube, Molines_A_df, channel, 'Pix_' + str(pixel_x) + '_' + str(pixel_y))
+            par,comps, out, matplotlib_fig = Ajuste.ajuste_chisqr(cube,Molines_A_df, channel, 'Pix_' + str(pixel_x) + '_' + str(pixel_y))
             img_src = convert_matplotlib_to_base64(matplotlib_fig)
             return True, img_src
     return False, ''
